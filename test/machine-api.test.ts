@@ -48,7 +48,18 @@ class MachineApi implements IMachineAPI{
     }
 
   lock(reservationId: string, machineNumber: number, reservationDateTime: Date, pin: number): boolean {
-    throw new Error("Method not implemented.")
+
+    const device = this.devices[machineNumber]
+
+    if(device){
+
+         const lockGranted = device.Lock(reservationId,reservationDateTime,pin)
+
+         return lockGranted
+
+    }
+
+    return false
   }
   unlock(reservationId: string): void {
     throw new Error("Method not implemented.")
