@@ -116,7 +116,7 @@ interface IMachineService{
 class LaundryReservation implements ILaundryReservation {
 
      private machines=Array<number>(25).fill(-1)
-     
+
      constructor( 
       private readonly emailService:IEmailService, 
       private readonly dbService:IDbService ,
@@ -125,10 +125,23 @@ class LaundryReservation implements ILaundryReservation {
        
      createReservation(dateTime:Date,phone:string,email:string){
 
+         const machineNumber = this.getVacantMachine()
+         const reservationId ="1"
+         const pin = this.getPin()
 
          
-         this.emailService.send(1,"1",1)
+         this.emailService.send(machineNumber,reservationId,pin)
 
+     }
+
+     private getVacantMachine(){
+        const vacantMachineIndex =this.machines.findIndex((value)=>{value===-1})
+
+        return vacantMachineIndex;
+     }
+
+     private getPin(){
+        return 123
      }
 
 }
