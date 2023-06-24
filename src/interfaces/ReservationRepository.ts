@@ -1,4 +1,4 @@
-import { Reservation } from '../entities/Reservation';
+import { Reservation } from '../models/Reservation';
 
 export interface ReservationRepository {
   save(reservation: Reservation): void;

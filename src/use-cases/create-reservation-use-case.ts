@@ -1,8 +1,8 @@
 // src/usecases/CreateReservationUseCase.ts
-import { Reservation } from '../entities/Reservation';
 import { ReservationRepository } from '../interfaces';
+import { Reservation } from '../models/Reservation';
 import { generateGuid } from '../utils/Guid';
-import { generateRandomPin, getRandomMachineNumber } from '../utils/Randon';
+import { generateRandomPin, getRandomMachineNumber } from '../utils/Random';
 
 export interface CreateReservationUseCase {
   execute(
@@ -20,6 +20,7 @@ export class CreateReservationInteractor implements CreateReservationUseCase {
     phoneNumber: string,
     email: string
   ): Reservation {
+    
     const reservation: Reservation = {
       id: generateGuid(),
       machineNumber: getRandomMachineNumber(),
