@@ -6,13 +6,8 @@ describe('laundry-reservation',()=>{
 
         
         test('is defined',()=>{
-             
-             //Arrange
-             const date = new Date ( 1,1,1,1,1,1)
-             const phone='1'
-             const email ='email'
-            
-             
+
+            //Arrange
             const sut  = getLaundryReservation()
 
             //Act //Assert
@@ -20,7 +15,7 @@ describe('laundry-reservation',()=>{
             
         })
 
-        test('makes reservation and sends email',()=>{
+        test('sends email',()=>{
 
            //Arrange
               const sut  = getLaundryReservation()
@@ -33,7 +28,7 @@ describe('laundry-reservation',()=>{
             const result = sut.createReservation(date,phone,email)
               
             //Assert
-            
+        
 
         })
 
