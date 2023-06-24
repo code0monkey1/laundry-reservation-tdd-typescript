@@ -71,8 +71,14 @@ describe('laundry-reservation',()=>{
           .mockImplementation(() => 
           
             {
-                      
-                emailService.send(1,"1",1)
+                            
+              const machineNumber =0
+              const reservationId ="1"
+              const pin =123
+
+              
+              emailService.send(machineNumber,reservationId,pin)
+
                 
             }
           
@@ -83,7 +89,7 @@ describe('laundry-reservation',()=>{
 
          expect(emailService.send).toBeCalledTimes(1)
 
-         expect(emailService.send).toBeCalledWith(1,"1",1)
+         expect(emailService.send).toBeCalledWith(0,"1",123)
 
         })
 
@@ -129,7 +135,7 @@ class LaundryReservation implements ILaundryReservation {
          const reservationId ="1"
          const pin = this.getPin()
 
-         
+
          this.emailService.send(machineNumber,reservationId,pin)
 
      }
