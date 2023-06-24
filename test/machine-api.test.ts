@@ -73,6 +73,35 @@ describe('machine-api', () => {
                   expect(result).toBe(true)
 
            })
+
+
+            it('returns false when device is found , but LOCK return false`',()=>{
+
+                  //Arrange
+                  const mockDevice :IMachineDevice={
+                      Lock: jest.fn(()=>{
+                        return false
+                      }),
+                      Unlock: jest.fn(()=>{
+                        return false
+                      })
+                    }
+
+                  const sut = new MachineApi([mockDevice])
+
+                  const reservationId:string="1" 
+                  const machineNumber:number =0
+                  const reservationDateTime:Date=new Date(1,1,1,1,1,1)
+                  const pin:number=12345
+
+                  //Act
+
+                  const result =sut.lock(reservationId,machineNumber,reservationDateTime,pin)
+                  
+                  //Assert
+                  expect(result).toBe(false)
+
+           })
              
      })
 })
