@@ -2,6 +2,7 @@ interface IMachineDevice{
      Lock( reservationId:string,  reservationDateTime:Date,  pin:number):boolean
      Unlock(machineNumber:number,reservationId:string):void
 }
+
 interface IMachineAPI{ 
 
      lock(reservationId:string ,machineNumber:number,reservationDateTime:Date,pin:number):boolean
