@@ -48,12 +48,17 @@ interface IEmailService{
   send:(machineNumber:number,reservationId:string,pin:number)=>void
 }
 
+interface IDbService{
+  create:()
+}
+
 class LaundryReservation implements ILaundryReservation {
       
      private _emailService!: IEmailService
+     private _dbService!:IDbService
 
 
-     initialize(emailService:IEmailService,){
+     initialize(emailService:IEmailService,dbService:I{
 
           this._emailService=emailService
 
