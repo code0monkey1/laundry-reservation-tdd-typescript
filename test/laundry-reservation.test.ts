@@ -186,8 +186,8 @@ class LaundryReservation implements ILaundryReservation {
         // save to db
           this.dbService.create(reservationId,email)
 
-        // lock machine 
-        this.machineService.lock(reservationId,machineNumber,dateTime,pin)
+         // lock machine 
+         this.machineService.lock(reservationId,machineNumber,dateTime,pin)
 
      }
 
