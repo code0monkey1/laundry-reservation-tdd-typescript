@@ -70,7 +70,7 @@ describe('laundry-reservation',()=>{
         .mockImplementation(() => Promise.resolve(true))
               
             //Assert
-            // expect()
+         expect(emailService.send).toBeCalledTimes(1)
 
         })
 
