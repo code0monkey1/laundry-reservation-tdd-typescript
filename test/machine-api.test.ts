@@ -46,7 +46,7 @@ describe('machine-api', () => {
 
            })
 
-                 it('returns error : `Device with machineNumber: 1 not found`',()=>{
+                 it('returns true when device is found`',()=>{
 
                   //Arrange
                   const mockDevice :IMachineDevice={
@@ -58,15 +58,19 @@ describe('machine-api', () => {
                       })
                     }
 
-                  const sut = new MachineApi([])
+                  const sut = new MachineApi([mockDevice])
 
                   const reservationId:string="1" 
-                  const machineNumber:number =1
+                  const machineNumber:number =0
                   const reservationDateTime:Date=new Date(1,1,1,1,1,1)
                   const pin:number=12345
 
-                  //Act //Assert
-                  expect(()=>sut.lock(reservationId,machineNumber,reservationDateTime,pin)).toThrowError(`Device with machineNumber: 1 not found`)
+                  //Act
+
+                  const result =sut.lock(reservationId,machineNumber,reservationDateTime,pin)
+                  
+                  //Assert
+                  expect(result).toBe(true)
 
            })
              
