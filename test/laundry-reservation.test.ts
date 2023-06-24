@@ -6,39 +6,27 @@ describe('laundry-reservation',()=>{
       let mockMachineService:IMachineService
 
 
-       class MockEmailService implements IEmailService{
-         send(machineNumber: number, reservationId: string, pin: number): void {
-           throw new Error("Method not implemented.")
-         }
-               
-        }
+       const emailService : IEmailService={
+         send: jest.fn()
+       }
 
-       class  MockDbService implements IDbService{
-         create(reservationId: string, email: string): void {
-           throw new Error("Method not implemented.")
-         }
-       
+      const dbService : IDbService={
+         create:jest.fn()
              
       }
 
-
-      class MockMachineService implements IMachineService{
-        lock(reservationId: string, reservationDateTime: Date, pin: number): boolean {
-          throw new Error("Method not implemented.")
-        }
-        unlock(reservationId: string): void {
-          throw new Error("Method not implemented.")
-        }
-           
+      const machineService : IMachineService={
+        lock:jest.fn(),
+        unlock:jest.fn()
       }
 
       beforeEach(()=>{
 
         jest.clearAllMocks();
 
-        mockEmailService= new MockEmailService()
-        mockDbService=new MockDbService()
-        mockMachineService= new MockMachineService()
+        mockEmailService= emailService
+        mockDbService= dbService
+        mockMachineService= machineService
 
       })
 
@@ -154,8 +142,8 @@ class LaundryReservation implements ILaundryReservation {
        // send email
          this.emailService.send(machineNumber,reservationId,pin)
 
-      //  // save to db
-      //  this.dbService.create(reservationId,email)
+       // save to db
+       this.dbService.create(reservationId,email)
 
      }
 
