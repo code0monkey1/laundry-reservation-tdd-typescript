@@ -6,12 +6,12 @@ describe('machine-api', () => {
            it('is defined',()=>{
              
               const mockDevice :IMachineDevice={
-                Lock: function (reservationId: string, reservationDateTime: Date, pin: number): boolean {
-                  throw new Error("Function not implemented.")
-                },
-                Unlock: function (reservationId: string): void {
-                  throw new Error("Function not implemented.")
-                }
+                Lock: jest.fn(()=>{
+                  return true
+                }),
+                Unlock: jest.fn(()=>{
+                   return false
+                })
               }
 
              //Arrange
