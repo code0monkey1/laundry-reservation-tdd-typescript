@@ -68,9 +68,10 @@ describe('laundry-reservation',()=>{
              
         jest.spyOn(mockLaundryReservation, "createReservation")
         .mockImplementation(() => 
+         
           {
                
-              
+               emailService.send(1,"1",1)
                
           }
         
