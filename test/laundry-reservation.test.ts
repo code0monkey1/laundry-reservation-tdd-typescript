@@ -128,7 +128,7 @@ describe('laundry-reservation',()=>{
                 sut.createReservation(date,phone,email)
     
                 expect(machineService.lock).toBeCalledWith('1',0,new Date (1,1,1,1,1,1),12345)
-  
+     
          
               })
 
