@@ -7,9 +7,9 @@ export class Reservation {
   constructor(
     private readonly id: string, 
     private readonly machineNumber: number, 
-    private reservationDateTime: Date, 
-    private pin: number,
-    private phoneNumber: string) {}
+    private readonly reservationDateTime: Date, 
+    private readonly pin: number,
+    private readonly phoneNumber: string) {}
 
   getFailedAttempts(){
     this.failedAttempts
