@@ -9,9 +9,7 @@ describe('machine-api', () => {
                 Lock: jest.fn(()=>{
                   return true
                 }),
-                Unlock: jest.fn(()=>{
-                   return false
-                })
+                Unlock: jest.fn()
               }
 
              //Arrange
@@ -109,6 +107,7 @@ describe('machine-api', () => {
 
                //Assert
                 expect(mockDevice.Lock).toBeCalledWith(reservationId,reservationDateTime,pin)
+                
                expect(result).toBe(false)
   
         })
@@ -151,7 +150,6 @@ class MachineApi implements IMachineAPI{
     const lockGranted = device.Lock(reservationId,reservationDateTime,pin)
 
     return lockGranted
-
   }
   unlock(reservationId: string): void {
     throw new Error("Method not implemented.")
