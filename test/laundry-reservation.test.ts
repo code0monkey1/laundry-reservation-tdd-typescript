@@ -127,7 +127,7 @@ describe('laundry-reservation',()=>{
                 //Assert
                 sut.createReservation(date,phone,email)
     
-                expect(machineService.lock).toBeCalledWith('1',new Date (1,1,1,1,1,1),12345)
+                expect(machineService.lock).toBeCalledWith('1',0,new Date (1,1,1,1,1,1),12345)
   
          
               })
@@ -159,7 +159,7 @@ interface IDbService{
 
 interface IMachineService{ 
 
-     lock(reservationId:string ,reservationDateTime:Date,pin:number):boolean
+     lock(reservationId:string ,machineNumber:number,reservationDateTime:Date,pin:number):boolean
      unlock( reservationId:string):void
 
 } 
@@ -187,7 +187,7 @@ class LaundryReservation implements ILaundryReservation {
          this.dbService.create(reservationId,email)
 
        // lock machine 
-       this.machineService.lock(reservationId,dateTime,pin)
+       this.machineService.lock(reservationId,machineNumber,dateTime,pin)
 
      }
 
