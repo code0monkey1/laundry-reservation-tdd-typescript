@@ -1,6 +1,11 @@
 
 describe('laundry-reservation',()=>{
 
+      let mockEmailService:IEmailService
+      let mockDbService:IDbService
+      let mockMachineService:IMachineService
+
+
        const emailService:IEmailService={
                send: jest.fn()
         }
@@ -15,33 +20,17 @@ describe('laundry-reservation',()=>{
                unlock: jest.fn()
       }
 
-      class MockLaundryReservation implements ILaundryReservation{
-      
-       
-         constructor( 
-           private readonly emailService:IEmailService,
-           private readonly dbService:IDbService ,
-           private readonly machineService:IMachineService){}
-
-        createReservation(dateTime: Date, phone: string, email: string): void {
-          throw new Error("Method not implemented.")
-        }
-        
-    
-      }
-
-
-      let mockLaundryReservation:ILaundryReservation
-
-
       beforeEach(()=>{
 
-        jest.clearAllMocks();
+      jest.clearAllMocks();
 
-        mockLaundryReservation = new MockLaundryReservation(emailService,dbService,machineService)
+       mockEmailService=emailService
+       mockDbService=dbService
+       mockMachineService= machineService
 
       })
 
+   
      
     describe('createReservation', () => {
 
@@ -49,8 +38,8 @@ describe('laundry-reservation',()=>{
         test('is defined',()=>{
 
             //Arrange
-            const sut  = mockLaundryReservation
-
+            const sut  = new LaundryReservation(mockEmailService,mockDbService,mockMachineService)
+            
             //Act //Assert
              expect(sut.createReservation).toBeInstanceOf(Function)
             
