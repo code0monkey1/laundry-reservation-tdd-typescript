@@ -21,11 +21,15 @@ describe('laundry-reservation',()=>{
               const sut  = getLaundryReservation()
 
            //Act 
-              const result = sut.createReservation(new Date(),"1","v@gmail.com")
+             const date = new Date ( 1,1,1,1,1,1)
+             const phone='1'
+             const email ='email'
+    
+            const result = sut.createReservation(date,phone,email)
               
-              //Assert
-              
-
+            //Assert
+            
+             
 
         })
 
