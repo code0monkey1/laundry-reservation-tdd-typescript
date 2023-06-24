@@ -109,7 +109,26 @@ describe('laundry-reservation',()=>{
             describe('lock',()=>{
 
               test("machine with \n   Reservation Id : '1' \n   Machine number: 0 \n   Reservation date and time : new Date ( 1,1,1,1,1,1) \n   PIN : 12345 ",()=>{
-      
+
+              jest.spyOn(mockDbService,'create').mockImplementation(()=>Promise.resolve(true))
+  
+              //Arrange
+                    const sut  = new LaundryReservation(
+                                                        mockEmailService,mockDbService,mockMachineService
+                                                        )
+  
+              //Act 
+                  const date = new Date ( 1,1,1,1,1,1)
+                  const phone='1'
+                  const email ='email'
+            
+                      
+                //Assert
+                sut.createReservation(date,phone,email)
+    
+                expect(mockDbService.create).lastCalledWith("1",email)
+  
+         
               })
 
             })
