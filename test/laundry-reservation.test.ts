@@ -97,6 +97,7 @@ describe('laundry-reservation',()=>{
               sut.createReservation(date,phone,email)
   
                expect(mockDbService.create).lastCalledWith("1",email)
+
   
           })
           
@@ -126,7 +127,7 @@ describe('laundry-reservation',()=>{
                 //Assert
                 sut.createReservation(date,phone,email)
     
-                expect(mockDbService.create).lastCalledWith("1",email)
+                expect(machineService.lock).toBeCalledWith('1',new Date (1,1,1,1,1,1),12345)
   
          
               })
@@ -183,7 +184,10 @@ class LaundryReservation implements ILaundryReservation {
          this.emailService.send(machineNumber,reservationId,pin)
 
        // save to db
-       this.dbService.create(reservationId,email)
+         this.dbService.create(reservationId,email)
+
+       // lock machine 
+       this.machineService.lock(reservationId,dateTime,pin)
 
      }
 
