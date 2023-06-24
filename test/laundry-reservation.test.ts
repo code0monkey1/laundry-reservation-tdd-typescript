@@ -1,6 +1,37 @@
 
 describe('laundry-reservation',()=>{
 
+       const emailService:IEmailService={
+               send: jest.fn()
+        }
+
+      const dbService:IDbService={
+               create: function (): void {
+                 send:jest.fn()
+               }
+      }
+
+
+      const machineService :IMachineService={
+               lock: jest.fn(),
+               unlock: jest.fn()
+      }
+
+
+      let laundryReservation:ILaundryReservation
+
+
+      beforeEach(()=>{
+
+          laundryReservation = new LaundryReservation(emailService,dbService,machineService)
+      })
+
+
+      afterEach(()=>{
+        jest.clearAllMocks()
+      })
+
+
      
     describe('createReservation', () => {
 
@@ -28,7 +59,7 @@ describe('laundry-reservation',()=>{
             const result = sut.createReservation(date,phone,email)
               
             //Assert
-        
+            
 
         })
 
