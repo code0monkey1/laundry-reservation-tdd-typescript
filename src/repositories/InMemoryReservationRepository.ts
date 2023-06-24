@@ -1,6 +1,6 @@
 // src/repositories/ReservationRepository.ts
+import { Reservation } from '../entities/Reservation';
 import { ReservationRepository } from '../interfaces';
-import { Reservation } from '../models/Reservation';
 
 export class InMemoryReservationRepository implements ReservationRepository {
 

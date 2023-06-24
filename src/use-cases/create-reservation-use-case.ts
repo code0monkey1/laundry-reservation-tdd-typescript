@@ -1,6 +1,6 @@
 // src/usecases/CreateReservationUseCase.ts
+import { Reservation } from '../entities/Reservation';
 import { ReservationRepository } from '../interfaces';
-import { Reservation } from '../models/Reservation';
 import { generateGuid } from '../utils/Guid';
 import { generateRandomPin, getRandomMachineNumber } from '../utils/Random';
 
@@ -14,7 +14,7 @@ export interface CreateReservationUseCase {
 
 export class CreateReservationInteractor implements CreateReservationUseCase {
   constructor(private reservationRepository: ReservationRepository) {}
-
+   
   execute(
     reservationDateTime: Date,
     phoneNumber: string,
