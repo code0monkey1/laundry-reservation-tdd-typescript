@@ -17,7 +17,6 @@ describe('laundry-reservation',()=>{
 
       class MockLaundryReservation implements ILaundryReservation{
       
-        private machines=Array<number>(25).fill(-1)
        
          constructor( 
            private readonly emailService:IEmailService,
@@ -116,6 +115,7 @@ interface IMachineService{
   
 class LaundryReservation implements ILaundryReservation {
 
+     private machines=Array<number>(25).fill(-1)
      
      constructor( 
       private readonly emailService:IEmailService, 
