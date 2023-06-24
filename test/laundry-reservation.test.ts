@@ -67,7 +67,14 @@ describe('laundry-reservation',()=>{
     
              
         jest.spyOn(mockLaundryReservation, "createReservation")
-        .mockImplementation(() => Promise.resolve(true))
+        .mockImplementation(() => 
+          {
+               
+              
+               
+          }
+        
+        )
               
             //Assert
          expect(emailService.send).toBeCalledTimes(1)
