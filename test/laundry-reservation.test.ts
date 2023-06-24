@@ -8,7 +8,7 @@ describe('laundry-reservation',()=>{
         test('is defined',()=>{
              
              //Arrange
-              const sut  = getLaundryReservation()
+              const sut  = new LaundryReservation()
 
               //Act //Assert
               expect(sut.createReservation).toBeInstanceOf(Function)
@@ -18,7 +18,7 @@ describe('laundry-reservation',()=>{
         test('Takes in Reservation date and time,Cell phone number,Email address',()=>{
 
            //Arrange
-              const sut  = getLaundryReservation()
+              const sut  = new LaundryReservation()
 
            //Act 
              const date = new Date ( 1,1,1,1,1,1)
@@ -44,12 +44,24 @@ interface ILaundryReservation{
    createReservation:(dateTime:Date,phone:string,email:string)=>void
 }
 
-function getLaundryReservation():ILaundryReservation {
+interface IEmailService{
+  send:(machineNumber:number,reservationId:string,pin:number)=>void
+}
 
-  return {
+class LaundryReservation implements ILaundryReservation {
+      
+     private _emailService!: IEmailService
+
+
+     initialize(emailService:IEmailService,){
+
+          this._emailService=emailService
+
+     }
+       
      createReservation(dateTime:Date,phone:string,email:string){
 
 
      }
-  }
+
 }
