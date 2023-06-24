@@ -6,9 +6,7 @@ describe('laundry-reservation',()=>{
         }
 
       const dbService:IDbService={
-               create: function (): void {
-                 send:jest.fn()
-               }
+               create: jest.fn()
       }
 
 
@@ -39,7 +37,7 @@ describe('laundry-reservation',()=>{
         test('is defined',()=>{
 
             //Arrange
-            const sut  = getLaundryReservation()
+            const sut  = laundryReservation
 
             //Act //Assert
              expect(sut.createReservation).toBeInstanceOf(Function)
@@ -49,7 +47,7 @@ describe('laundry-reservation',()=>{
         test('sends email',()=>{
 
            //Arrange
-              const sut  = getLaundryReservation()
+              const sut  = laundryReservation
 
            //Act 
              const date = new Date ( 1,1,1,1,1,1)
@@ -103,28 +101,3 @@ class LaundryReservation implements ILaundryReservation {
 
 }
 
-
-function getLaundryReservation():ILaundryReservation{
-
-          
-             const emailService:IEmailService={
-               send: jest.fn()
-             }
-
-             const dbService:IDbService={
-               create: function (): void {
-                 send:jest.fn()
-               }
-             }
-
-
-             const machineService :IMachineService={
-               lock: jest.fn(),
-               unlock: jest.fn()
-             }
-
-             
-              const laundryReservation  = new LaundryReservation(emailService,dbService,machineService)
-
-   return laundryReservation
-}
