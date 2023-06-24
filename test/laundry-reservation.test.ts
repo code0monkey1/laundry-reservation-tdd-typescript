@@ -49,53 +49,68 @@ describe('laundry-reservation',()=>{
             
         })
         
-
-        test('sends email with machine number : 0, reservation ID :1 , and a 5 digit PIN : 12345',()=>{
-
-
-              jest.spyOn(mockEmailService,'send').mockImplementation(()=>Promise.resolve(true))
-
-            //Arrange
-                  const sut  = new LaundryReservation(
-                                                      mockEmailService,mockDbService,mockMachineService
-                                                      )
-
-            //Act 
-                const date = new Date ( 1,1,1,1,1,1)
-                const phone='1'
-                const email ='email'
-        
-                  
-            //Assert
-            sut.createReservation(date,phone,email)
-
-            expect(mockEmailService.send).toBeCalledTimes(1)
-
-            expect(mockEmailService.send).toBeCalledWith(0,"1",12345)
-
-        })
-
-        test('saves reservation to db',()=>{
+        describe('email', () => {
+          test('sends email with machine number : 0, reservation ID :1 , and a 5 digit PIN : 12345',()=>{
+  
+  
+                jest.spyOn(mockEmailService,'send').mockImplementation(()=>Promise.resolve(true))
+  
+              //Arrange
+                    const sut  = new LaundryReservation(
+                                                        mockEmailService,mockDbService,mockMachineService
+                                                        )
+  
+              //Act 
+                  const date = new Date ( 1,1,1,1,1,1)
+                  const phone='1'
+                  const email ='email'
           
-              jest.spyOn(mockDbService,'create').mockImplementation(()=>Promise.resolve(true))
-
-            //Arrange
-                  const sut  = new LaundryReservation(
-                                                      mockEmailService,mockDbService,mockMachineService
-                                                      )
-
-            //Act 
-                const date = new Date ( 1,1,1,1,1,1)
-                const phone='1'
-                const email ='email'
+                    
+              //Assert
+              sut.createReservation(date,phone,email)
+  
+              expect(mockEmailService.send).toBeCalledTimes(1)
+  
+              expect(mockEmailService.send).toBeCalledWith(0,"1",12345)
+  
+          })
+          
+        })
         
-                  
-            //Assert
-            sut.createReservation(date,phone,email)
-
-             expect(mockDbService.create).lastCalledWith("1",email)
+        describe('db', () => {
+          test('saves reservation to db',()=>{
+            
+                jest.spyOn(mockDbService,'create').mockImplementation(()=>Promise.resolve(true))
+  
+              //Arrange
+                    const sut  = new LaundryReservation(
+                                                        mockEmailService,mockDbService,mockMachineService
+                                                        )
+  
+              //Act 
+                  const date = new Date ( 1,1,1,1,1,1)
+                  const phone='1'
+                  const email ='email'
+          
+                    
+              //Assert
+              sut.createReservation(date,phone,email)
+  
+               expect(mockDbService.create).lastCalledWith("1",email)
+  
+          })
+          
+        })
+        
+       
+        describe('machine',()=>{
+          test("Send lock instruction to selected machine via Machine API Reservation Id Machine number Reservation date and time PIN'",()=>{
+  
+          })
 
         })
+
+
 
 
       
