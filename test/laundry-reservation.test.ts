@@ -107,7 +107,7 @@ interface IEmailService{
 }
 
 interface IDbService{
-  create():void
+  create(reservationId:string,email:string):void
 }
 
 interface IMachineService{ 
@@ -133,8 +133,12 @@ class LaundryReservation implements ILaundryReservation {
          const reservationId =this.getReservationId()
          const pin = this.getPin()
 
-
+       // send email
          this.emailService.send(machineNumber,reservationId,pin)
+
+       // save to db
+
+       this.dbService.create()
 
      }
 
