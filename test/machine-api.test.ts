@@ -48,7 +48,7 @@ describe('machine-api', () => {
            describe('Device Lock Api',()=>{
 
           
-             it('returns true when device is found`',()=>{
+             it('returns true when conditions are fulfilled `',()=>{
   
               //Arrange
               const mockDevice :IMachineDevice={
@@ -73,11 +73,12 @@ describe('machine-api', () => {
               
               //Assert
               expect(mockDevice.Lock).toBeCalledWith(reservationId,reservationDateTime,pin)
+
               expect(result).toBe(true)
   
              })
 
-       it('returns false when device is found , but LOCK conditions are not fulfilled`',()=>{
+       it('returns false , as conditions not fulfilled',()=>{
 
              //Arrange
              const mockDevice :IMachineDevice={
