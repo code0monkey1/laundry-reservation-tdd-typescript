@@ -6,8 +6,8 @@ export interface LockMachineUseCase {
 
 export class LockMachineInteractor implements LockMachineUseCase {
   constructor(
-    private machineDevice: MachineDevice,
-    private reservationRepository: ReservationRepository
+    private readonly machineDevice: MachineDevice,
+    private readonly reservationRepository: ReservationRepository
   ) {}
 
   execute(machineNumber: number, reservationId: string): boolean {
@@ -25,7 +25,7 @@ export class LockMachineInteractor implements LockMachineUseCase {
       if (locked) {
         return true;
       }
-      
+
     }
     return false;
   }
