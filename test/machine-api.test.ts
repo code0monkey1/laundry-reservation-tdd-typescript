@@ -47,7 +47,7 @@ describe('machine-api', () => {
            
            describe('Device Lock Api',()=>{
 
-
+          
              it('returns true when device is found`',()=>{
   
               //Arrange
@@ -68,10 +68,11 @@ describe('machine-api', () => {
               const pin:number=12345
   
               //Act
-  
+   
               const result =sut.lock(reservationId,machineNumber,reservationDateTime,pin)
               
               //Assert
+              expect(mockDevice.Lock).toBeCalledWith(reservationId,reservationDateTime,pin)
               expect(result).toBe(true)
   
              })
