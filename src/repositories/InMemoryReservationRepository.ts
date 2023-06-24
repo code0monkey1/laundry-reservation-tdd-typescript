@@ -1,0 +1,28 @@
+// src/repositories/ReservationRepository.ts
+import { Reservation } from '../entities/Reservation';
+import { ReservationRepository } from '../interfaces';
+
+export class InMemoryReservationRepository implements ReservationRepository {
+  
+  getAll(): Reservation[] {
+    throw new Error('Method not implemented.');
+  }
+  private reservations: Reservation[] = [];
+
+  save(reservation: Reservation): void {
+    this.reservations.push(reservation);
+  }
+
+  getById(id: string): Reservation | undefined {
+    return this.reservations.find((reservation) => reservation.id === id);
+  }
+
+  update(reservation: Reservation): void {
+    const index = this.reservations.findIndex(
+      (r) => r.id === reservation.id
+    );
+    if (index !== -1) {
+      this.reservations[index] = reservation;
+    }
+  }
+}
