@@ -21,94 +21,101 @@ describe('machine-api', () => {
              expect(sut.lock).toBeDefined()
 
            })
-           it('returns error : `Device with machineNumber: 1 not found`, if device not found',()=>{
 
-             //Arrange
-            const mockDevice :IMachineDevice={
-                Lock: jest.fn(()=>{
-                  return true
-                }),
-                Unlock: jest.fn(()=>{
-                   return false
-                })
-              }
-
-             const sut = new MachineApi([])
-
-             const reservationId:string="1" 
-             const machineNumber:number =1
-             const reservationDateTime:Date=new Date(1,1,1,1,1,1)
-             const pin:number=12345
-
-             //Act //Assert
-             expect(()=>sut.lock(reservationId,machineNumber,reservationDateTime,pin)).toThrowError(`Device with machineNumber: 1 not found`)
-
-           })
-           
-           describe('Device Lock Api',()=>{
-
-          
-             it('returns true when conditions are fulfilled `',()=>{
+           describe('Device not found', () => {
+             it('returns error : `Device with machineNumber: 1 not found`, if device not found',()=>{
   
-              //Arrange
+               //Arrange
               const mockDevice :IMachineDevice={
                   Lock: jest.fn(()=>{
                     return true
                   }),
                   Unlock: jest.fn(()=>{
-                    return false
+                     return false
                   })
                 }
   
-              const sut = new MachineApi([mockDevice])
+               const sut = new MachineApi([])
   
-              const reservationId:string="1" 
-              const machineNumber:number =0
-              const reservationDateTime:Date=new Date(1,1,1,1,1,1)
-              const pin:number=12345
+               const reservationId:string="1" 
+               const machineNumber:number =1
+               const reservationDateTime:Date=new Date(1,1,1,1,1,1)
+               const pin:number=12345
   
-              //Act
-   
-              const result =sut.lock(reservationId,machineNumber,reservationDateTime,pin)
-              
-              //Assert
-              expect(mockDevice.Lock).toBeCalledWith(reservationId,reservationDateTime,pin)
-
-              expect(result).toBe(true)
+               //Act //Assert
+               expect(()=>sut.lock(reservationId,machineNumber,reservationDateTime,pin)).toThrowError(`Device with machineNumber: 1 not found`)
   
              })
-
-       it('returns false , as conditions not fulfilled',()=>{
-
-             //Arrange
-             const mockDevice :IMachineDevice={
-                 Lock: jest.fn(()=>{
-                   return false
-                 }),
-                 Unlock: jest.fn(()=>{
-                   return false
-                 })
-               }
-
-             const sut = new MachineApi([mockDevice])
-
-             const reservationId:string="1" 
-             const machineNumber:number =0
-             const reservationDateTime:Date=new Date(1,1,1,1,1,1)
-             const pin:number=12345
-
-             //Act
-
-             const result =sut.lock(reservationId,machineNumber,reservationDateTime,pin)
              
-             //Assert
-             expect(result).toBe(false)
-
-      })
+             
            })
 
+           describe('Device found',()=>{
 
+             describe('Device Lock Api',()=>{
+  
+            
+               it('returns true when conditions are fulfilled',()=>{
+    
+                //Arrange
+                const mockDevice :IMachineDevice={
+                    Lock: jest.fn(()=>{
+                      return true
+                    }),
+                    Unlock: jest.fn(()=>{
+                      return false
+                    })
+                  }
+    
+                const sut = new MachineApi([mockDevice])
+    
+                const reservationId:string="1" 
+                const machineNumber:number =0
+                const reservationDateTime:Date=new Date(1,1,1,1,1,1)
+                const pin:number=12345
+    
+                //Act
+     
+                const result =sut.lock(reservationId,machineNumber,reservationDateTime,pin)
+                
+                //Assert
+                expect(mockDevice.Lock).toBeCalledWith(reservationId,reservationDateTime,pin)
+  
+                expect(result).toBe(true)
+    
+               })
+  
+         it('returns false , as conditions not fulfilled',()=>{
+  
+               //Arrange
+               const mockDevice :IMachineDevice={
+                   Lock: jest.fn(()=>{
+                     return false
+                   }),
+                   Unlock: jest.fn(()=>{
+                     return false
+                   })
+                 }
+  
+               const sut = new MachineApi([mockDevice])
+  
+               const reservationId:string="1" 
+               const machineNumber:number =0
+               const reservationDateTime:Date=new Date(1,1,1,1,1,1)
+               const pin:number=12345
+  
+               //Act
+               const result =sut.lock(reservationId,machineNumber,reservationDateTime,pin)
 
+               //Assert
+                expect(mockDevice.Lock).toBeCalledWith(reservationId,reservationDateTime,pin)
+               expect(result).toBe(false)
+  
+        })
+             })
+
+           })
+          
              
      })
 })
