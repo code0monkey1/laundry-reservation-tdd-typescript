@@ -39,9 +39,9 @@ describe('laundry-reservation',()=>{
 
             //Arrange
             const sut  = new LaundryReservation(
-                                                  mockEmailService,
-                                                  mockDbService,
-                                                  mockMachineService
+                                                mockEmailService,
+                                                mockDbService,
+                                                mockMachineService
                                                 )
 
             //Act //Assert
@@ -53,7 +53,7 @@ describe('laundry-reservation',()=>{
 
             //Arrange
                   const sut  = new LaundryReservation(
-                                                        mockEmailService,mockDbService,mockMachineService
+                                                      mockEmailService,mockDbService,mockMachineService
                                                       )
 
             //Act 
