@@ -1,6 +1,8 @@
 
 describe('laundry-reservation',()=>{
 
+     
+
        const emailService:IEmailService={
                send: jest.fn()
         }
@@ -13,6 +15,15 @@ describe('laundry-reservation',()=>{
       const machineService :IMachineService={
                lock: jest.fn(),
                unlock: jest.fn()
+      }
+
+      class MockLaundryReservation implements ILaundryReservation{
+        createReservation(dateTime: Date, phone: string, email: string): void {
+          throw new Error("Method not implemented.")
+        }
+        
+    
+        
       }
 
 
@@ -54,10 +65,10 @@ describe('laundry-reservation',()=>{
              const phone='1'
              const email ='email'
     
-            const result = sut.createReservation(date,phone,email)
+             const result = sut.createReservation(date,phone,email)
               
             //Assert
-            
+            // expect()
 
         })
 
@@ -69,21 +80,21 @@ describe('laundry-reservation',()=>{
 })
 
 interface ILaundryReservation{
-   createReservation:(dateTime:Date,phone:string,email:string)=>void
+   createReservation(dateTime:Date,phone:string,email:string):void
 }
 
 interface IEmailService{
-  send:(machineNumber:number,reservationId:string,pin:number)=>void
+  send(machineNumber:number,reservationId:string,pin:number):void
 }
 
 interface IDbService{
-  create:()=>void
+  create():void
 }
 
 interface IMachineService{ 
 
-     lock:(reservationId:string ,reservationDateTime:Date,pin:number)=>boolean
-     unlock:( reservationId:string)=>void
+     lock(reservationId:string ,reservationDateTime:Date,pin:number):boolean
+     unlock( reservationId:string):void
 
 } 
   
