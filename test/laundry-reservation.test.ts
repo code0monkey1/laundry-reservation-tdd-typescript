@@ -17,7 +17,14 @@ describe('laundry-reservation',()=>{
 
         test('Takes in Reservation date and time,Cell phone number,Email address',()=>{
 
+           //Arrange
+              const sut  = getLaundryReservation()
 
+           //Act 
+              const result = sut.createReservation(new Date(),"1","v@gmail.com")
+              
+              //Assert
+              
 
 
         })
