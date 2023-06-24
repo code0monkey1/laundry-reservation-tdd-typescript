@@ -2,7 +2,7 @@
 describe('laundry-reservation',()=>{
 
      
-    describe('reserveMachine', () => {
+    describe('createReservation', () => {
 
         
         test('is defined',()=>{
@@ -11,7 +11,7 @@ describe('laundry-reservation',()=>{
               const sut  = getLaundryReservation()
 
               //Act //Assert
-              expect(sut.reserveMachine).toBeInstanceOf(Function)
+              expect(sut.createReservation).toBeInstanceOf(Function)
             
         })
 
@@ -23,13 +23,13 @@ describe('laundry-reservation',()=>{
 })
 
 interface ILaundryReservation{
-   reserveMachine:(date:string,time:string,phone:string,email:string)=>void
+   createReservation:(date:string,time:string,phone:string,email:string)=>void
 }
 
 function getLaundryReservation():ILaundryReservation {
 
   return {
-     reserveMachine(data:string,time:string,phone:string,email:string){
+     createReservation(data:string,time:string,phone:string,email:string){
 
 
      }
