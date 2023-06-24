@@ -18,6 +18,12 @@ describe('laundry-reservation',()=>{
       }
 
       class MockLaundryReservation implements ILaundryReservation{
+
+         constructor( 
+           private readonly emailService:IEmailService,
+           private readonly dbService:IDbService ,
+           private readonly machineService:IMachineService){}
+
         createReservation(dateTime: Date, phone: string, email: string): void {
           throw new Error("Method not implemented.")
         }
@@ -32,7 +38,7 @@ describe('laundry-reservation',()=>{
 
       beforeEach(()=>{
 
-          laundryReservation = new LaundryReservation(emailService,dbService,machineService)
+          laundryReservation = new MockLaundryReservation(emailService,dbService,machineService)
       })
 
 
