@@ -15,14 +15,17 @@ export class LockMachineInteractor implements LockMachineUseCase {
     const reservation = this.reservationRepository.getById(reservationId);
     
     if (reservation && reservation.machineNumber === machineNumber) {
+      
       const locked = this.machineDevice.lock(
         reservationId,
         reservation.reservationDateTime,
         reservation.pin
       );
+
       if (locked) {
         return true;
       }
+      
     }
     return false;
   }
