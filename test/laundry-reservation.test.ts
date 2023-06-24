@@ -50,7 +50,7 @@ describe('laundry-reservation',()=>{
         })
         
         describe('email', () => {
-          test('sends email with machine number : 0, reservation ID :1 , and a 5 digit PIN : 12345',()=>{
+          test('sends mail with \n machine number : 0,\n reservation ID :1 \n 5 digit PIN : 12345',()=>{
   
   
                 jest.spyOn(mockEmailService,'send').mockImplementation(()=>Promise.resolve(true))
@@ -135,14 +135,9 @@ describe('laundry-reservation',()=>{
             })
 
         })
-
-
-
-
-      
+  
     })
-    
-     
+      
 })
 
 interface ILaundryReservation{
