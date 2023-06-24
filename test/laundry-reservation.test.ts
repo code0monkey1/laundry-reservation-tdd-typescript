@@ -109,13 +109,25 @@ class LaundryReservation implements ILaundryReservation {
        
      createReservation(dateTime:Date,phone:string,email:string){
 
-         const machineNumber =0
-         const reservationId ="1"
-         const pin = 123
+         const machineNumber =this.getMachineNumber()
+         const reservationId =this.getReservationId()
+         const pin = this.getPin()
 
 
          this.emailService.send(machineNumber,reservationId,pin)
 
+     }
+
+     private getMachineNumber(){
+           return this.machines.indexOf(-1)
+     }
+
+     private getReservationId(){
+             return "1"
+     }
+
+     private getPin(){
+              return 123
      }
 
      initialize(machines :Array<number>){
