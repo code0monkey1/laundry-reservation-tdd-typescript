@@ -57,28 +57,32 @@ describe('laundry-reservation',()=>{
 
         test('sends email',()=>{
 
-           //Arrange
+        //Arrange
               const sut  = mockLaundryReservation
 
-           //Act 
+        //Act 
              const date = new Date ( 1,1,1,1,1,1)
              const phone='1'
              const email ='email'
     
              
-        jest.spyOn(mockLaundryReservation, "createReservation")
-        .mockImplementation(() => 
-         
-          {
-               
-               emailService.send(1,"1",1)
-               
-          }
-        
-        )
+          jest.spyOn(mockLaundryReservation, "createReservation")
+          .mockImplementation(() => 
+          
+            {
+                
+                emailService.send(1,"1",1)
+                
+            }
+          
+          )
               
-            //Assert
+        //Assert
+         sut.createReservation(date,phone,email)
+
          expect(emailService.send).toBeCalledTimes(1)
+
+         expect(emailService.send).toBeCalledWith(1,"1",1)
 
         })
 
