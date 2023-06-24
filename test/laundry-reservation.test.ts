@@ -14,9 +14,10 @@ describe('laundry-reservation',()=>{
         }
 
        class  MockDbService implements IDbService{
-         create(): void {
+         create(reservationId: string, email: string): void {
            throw new Error("Method not implemented.")
          }
+       
              
       }
 
@@ -87,7 +88,24 @@ describe('laundry-reservation',()=>{
         })
 
         test('saves reservation to db',()=>{
+          
+              jest.spyOn(mockDbService,'create').mockImplementation(()=>Promise.resolve(true))
 
+            //Arrange
+                  const sut  = new LaundryReservation(
+                                                      mockEmailService,mockDbService,mockMachineService
+                                                      )
+
+            //Act 
+                const date = new Date ( 1,1,1,1,1,1)
+                const phone='1'
+                const email ='email'
+        
+                  
+            //Assert
+            sut.createReservation(date,phone,email)
+
+             expect(mockDbService.create).lastCalledWith("1",email)
 
         })
 
@@ -138,7 +156,7 @@ class LaundryReservation implements ILaundryReservation {
 
        // save to db
 
-       this.dbService.create()
+       this.dbService.create(reservationId,email)
 
      }
 
