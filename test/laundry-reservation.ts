@@ -1,5 +1,5 @@
 
-describe.skip('laundry-reservation',()=>{
+describe('laundry-reservation',()=>{
 
       let mockEmailService:IEmailService
       let mockDbService:IDbService
