@@ -114,7 +114,9 @@ class LaundryReservation implements ILaundryReservation {
 
      private getVacantMachine(){
         const vacantMachineIndex =this.machines.findIndex((value)=>{value===-1})
+        console.log(this.machines)
 
+        console.log("vacantIndex",vacantMachineIndex)
         return vacantMachineIndex;
      }
 
