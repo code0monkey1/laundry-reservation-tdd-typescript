@@ -54,8 +54,7 @@ describe('laundry-reservation',()=>{
 
               jest.spyOn(mockEmailService,'send').mockImplementation(()=>{
 
-
-             emailService.send(0,"1",123)
+                  
               })
 
             //Arrange
