@@ -5,8 +5,17 @@ describe('machine-api', () => {
             
            it('is defined',()=>{
              
+              const mockDevice :IMachineDevice={
+                Lock: function (reservationId: string, reservationDateTime: Date, pin: number): boolean {
+                  throw new Error("Function not implemented.")
+                },
+                Unlock: function (reservationId: string): void {
+                  throw new Error("Function not implemented.")
+                }
+              }
+
              //Arrange
-             const sut = new MachineApi([])
+             const sut = new MachineApi([mockDevice])
 
              //Act //Assert
              expect(sut.lock).toBeDefined()
