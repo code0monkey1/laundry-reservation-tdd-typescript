@@ -60,7 +60,7 @@ describe('laundry-reservation',()=>{
             
         })
 
-        test('sends email once ',()=>{
+        test('sends email with machine number, reservation ID and a 5 digit PIN',()=>{
 
 
               jest.spyOn(mockEmailService,'send').mockImplementation(()=>Promise.resolve(true))
@@ -84,6 +84,8 @@ describe('laundry-reservation',()=>{
             expect(mockEmailService.send).toBeCalledWith(0,"1",123)
 
         })
+
+        test('calls machine api')
 
 
       
