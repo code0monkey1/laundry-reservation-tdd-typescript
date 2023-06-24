@@ -28,4 +28,5 @@ export class ClaimReservationInteractor implements ClaimReservationUseCase {
 
     return false;
   }
+  
 }
