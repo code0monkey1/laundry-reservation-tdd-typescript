@@ -49,18 +49,26 @@ interface IEmailService{
 }
 
 interface IDbService{
-  create:()
+  create:()=>void
 }
 
+interface IMachineDevice{ 
+
+     lock:(reservationId:string ,reservationDateTime:Date,pin:number)=>boolean
+     unlock:( reservationId:string)=>void
+     
+} 
+  
 class LaundryReservation implements ILaundryReservation {
       
      private _emailService!: IEmailService
      private _dbService!:IDbService
 
 
-     initialize(emailService:IEmailService,dbService:I{
+     initialize(emailService:IEmailService,dbService:IDbService){
 
           this._emailService=emailService
+          this._dbService=dbService
 
      }
        
