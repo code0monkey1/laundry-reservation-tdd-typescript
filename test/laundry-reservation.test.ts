@@ -22,11 +22,11 @@ describe('laundry-reservation',()=>{
 
       beforeEach(()=>{
 
-      jest.clearAllMocks();
+        jest.clearAllMocks();
 
-       mockEmailService=emailService
-       mockDbService=dbService
-       mockMachineService= machineService
+        mockEmailService=emailService
+        mockDbService=dbService
+        mockMachineService= machineService
 
       })
 
@@ -38,7 +38,11 @@ describe('laundry-reservation',()=>{
         test('is defined',()=>{
 
             //Arrange
-            const sut  = new LaundryReservation(mockEmailService,mockDbService,mockMachineService)
+            const sut  = new LaundryReservation(
+                                                  mockEmailService,
+                                                  mockDbService,
+                                                  mockMachineService
+                                                )
 
             //Act //Assert
              expect(sut.createReservation).toBeInstanceOf(Function)
@@ -47,21 +51,23 @@ describe('laundry-reservation',()=>{
 
         test('sends email',()=>{
 
-        //Arrange
-              const sut  = new LaundryReservation(mockEmailService,mockDbService,mockMachineService)
+            //Arrange
+                  const sut  = new LaundryReservation(
+                                                        mockEmailService,mockDbService,mockMachineService
+                                                      )
 
-        //Act 
-             const date = new Date ( 1,1,1,1,1,1)
-             const phone='1'
-             const email ='email'
-    
-              
-        //Assert
-         sut.createReservation(date,phone,email)
+            //Act 
+                const date = new Date ( 1,1,1,1,1,1)
+                const phone='1'
+                const email ='email'
+        
+                  
+            //Assert
+            sut.createReservation(date,phone,email)
 
-         expect(emailService.send).toBeCalledTimes(1)
+            expect(emailService.send).toBeCalledTimes(1)
 
-         expect(emailService.send).toBeCalledWith(0,"1",123)
+            expect(emailService.send).toBeCalledWith(0,"1",123)
 
         })
 
