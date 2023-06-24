@@ -39,7 +39,7 @@ describe('laundry-reservation',()=>{
 
             //Arrange
             const sut  = new LaundryReservation(mockEmailService,mockDbService,mockMachineService)
-            
+
             //Act //Assert
              expect(sut.createReservation).toBeInstanceOf(Function)
             
@@ -48,30 +48,13 @@ describe('laundry-reservation',()=>{
         test('sends email',()=>{
 
         //Arrange
-              const sut  = mockLaundryReservation
+              const sut  = new LaundryReservation(mockEmailService,mockDbService,mockMachineService)
 
         //Act 
              const date = new Date ( 1,1,1,1,1,1)
              const phone='1'
              const email ='email'
     
-             
-          jest.spyOn(mockLaundryReservation, "createReservation")
-          .mockImplementation(() => 
-          
-            {
-                            
-              const machineNumber =0
-              const reservationId ="1"
-              const pin =123
-
-              
-              emailService.send(machineNumber,reservationId,pin)
-
-                
-            }
-          
-          )
               
         //Assert
          sut.createReservation(date,phone,email)
