@@ -104,9 +104,15 @@ describe('laundry-reservation',()=>{
         
        
         describe('machine',()=>{
-          test("Send lock instruction to selected machine via Machine API Reservation Id : '1' , Machine number: 0 , Reservation date and time :Date ( 1,1,1,1,1,1) , PIN : 12345 '",()=>{
-  
-          })
+
+
+            describe('lock',()=>{
+
+              test("machine with \n   Reservation Id : '1' \n   Machine number: 0 \n   Reservation date and time : new Date ( 1,1,1,1,1,1) \n   PIN : 12345 ",()=>{
+      
+              })
+
+            })
 
         })
 
