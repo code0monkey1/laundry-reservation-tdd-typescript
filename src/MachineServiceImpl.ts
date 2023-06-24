@@ -5,24 +5,39 @@ export interface IMachineDevice{
 
 export interface IMachineAPI {
 
-  devices: { [key: number]: IMachineDevice };
   lockMachine(reservationId: string, machineNumber: number, reservationDateTime: Date): boolean;
   unlockMachine(machineNumber: number, reservationId: string): void;
   claimReservation(machineId: number, pin: number): boolean;
-  
+
 }
 
 
-export default class MachineService implements IMachineService{
+export default class MachineService implements IMachineAPI{
+  
+  private readonly devices: { [key: number]: IMachineDevice };
    
-  constructor(private machines:Array<number>){}
+  constructor(devices:{ [key: number]: IMachineDevice }) {
 
-  lock(reservationId: string, machineNumber: number, reservationDateTime: Date, pin: number): boolean {
+    this.devices = devices;
+  }
+
+  lockMachine(reservationId: string, machineNumber: number, reservationDateTime: Date): boolean {
+      
+      const device = this.devices[machineNumber];
+
+      if(device){
+         return true
+      }
+
+      return false
+  }
+  unlockMachine(machineNumber: number, reservationId: string): void {
     throw new Error("Method not implemented.");
   }
-  unlock(reservationId: string): void {
+  claimReservation(machineId: number, pin: number): boolean {
     throw new Error("Method not implemented.");
   }
+
 
   
 }
