@@ -8,17 +8,22 @@ describe('laundry-reservation',()=>{
         test('is defined',()=>{
              
              //Arrange
-              const sut  = new LaundryReservation()
+             const date = new Date ( 1,1,1,1,1,1)
+             const phone='1'
+             const email ='email'
+            
+             
+            const sut  = getLaundryReservation()
 
-              //Act //Assert
-              expect(sut.createReservation).toBeInstanceOf(Function)
+            //Act //Assert
+             expect(sut.createReservation).toBeInstanceOf(Function)
             
         })
 
-        test('Takes in Reservation date and time,Cell phone number,Email address',()=>{
+        test('makes reservation and sends email',()=>{
 
            //Arrange
-              const sut  = new LaundryReservation()
+              const sut  = getLaundryReservation()
 
            //Act 
              const date = new Date ( 1,1,1,1,1,1)
@@ -29,7 +34,6 @@ describe('laundry-reservation',()=>{
               
             //Assert
             
-             
 
         })
 
@@ -52,29 +56,49 @@ interface IDbService{
   create:()=>void
 }
 
-interface IMachineDevice{ 
+interface IMachineService{ 
 
      lock:(reservationId:string ,reservationDateTime:Date,pin:number)=>boolean
      unlock:( reservationId:string)=>void
-     
+
 } 
   
 class LaundryReservation implements ILaundryReservation {
       
-     private _emailService!: IEmailService
-     private _dbService!:IDbService
 
+     constructor( private readonly emailService:IEmailService, private readonly dbService:IDbService ,private readonly machineService:IMachineService){}
 
-     initialize(emailService:IEmailService,dbService:IDbService){
-
-          this._emailService=emailService
-          this._dbService=dbService
-
-     }
        
      createReservation(dateTime:Date,phone:string,email:string){
-
+         
+         this.emailService.send(1,"1",1)
 
      }
 
+}
+
+
+function getLaundryReservation():ILaundryReservation{
+
+          
+             const emailService:IEmailService={
+               send: jest.fn()
+             }
+
+             const dbService:IDbService={
+               create: function (): void {
+                 send:jest.fn()
+               }
+             }
+
+
+             const machineService :IMachineService={
+               lock: jest.fn(),
+               unlock: jest.fn()
+             }
+
+             
+              const laundryReservation  = new LaundryReservation(emailService,dbService,machineService)
+
+   return laundryReservation
 }
