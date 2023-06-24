@@ -75,7 +75,7 @@ describe('machine-api', () => {
            })
 
 
-            it('returns false when device is found , but LOCK return false`',()=>{
+            it('returns false when device is found , but LOCK conditions are not fulfilled`',()=>{
 
                   //Arrange
                   const mockDevice :IMachineDevice={
