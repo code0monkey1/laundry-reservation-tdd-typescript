@@ -69,6 +69,7 @@ describe('laundry-reservation',()=>{
 
             expect(emailService.send).toBeCalledWith(0,"1",123)
 
+
         })
 
 
@@ -123,10 +124,12 @@ class LaundryReservation implements ILaundryReservation {
      }
 
      private getReservationId(){
+      //TODO
              return "1"
      }
 
      private getPin(){
+         //TODO
               return 123
      }
 
