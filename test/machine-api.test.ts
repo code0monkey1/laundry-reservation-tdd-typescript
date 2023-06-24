@@ -51,15 +51,13 @@ class MachineApi implements IMachineAPI{
 
     const device = this.devices[machineNumber]
 
-    if(device){
+    if(!device)
+        throw new Error(`Device with machineNumber: ${machineNumber} not found`)
 
-         const lockGranted = device.Lock(reservationId,reservationDateTime,pin)
+    const lockGranted = device.Lock(reservationId,reservationDateTime,pin)
 
-         return lockGranted
-
-    }
-
-    return false
+    return lockGranted
+    
   }
   unlock(reservationId: string): void {
     throw new Error("Method not implemented.")
