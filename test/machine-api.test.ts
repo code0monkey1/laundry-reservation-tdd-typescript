@@ -48,7 +48,7 @@ describe('machine-api', () => {
              
            })
 
-           describe('Device found',()=>{
+
 
              describe('Lock',()=>{
   
@@ -115,7 +115,11 @@ describe('machine-api', () => {
       
       })
 
-             describe('Unlock',()=>{
+        
+     
+     })
+
+      describe('unlock',()=>{
                 
               test('calls unlock while passing  machine number and reservation id',()=>{
                   
@@ -140,11 +144,7 @@ describe('machine-api', () => {
               })
 
              })
-
-           })
-          
              
-     })
 })
 
 interface IMachineDevice{
