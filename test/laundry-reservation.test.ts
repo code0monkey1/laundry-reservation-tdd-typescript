@@ -60,7 +60,7 @@ describe('laundry-reservation',()=>{
             
         })
 
-        test('sends email',()=>{
+        test('sends email once ',()=>{
 
 
               jest.spyOn(mockEmailService,'send').mockImplementation(()=>Promise.resolve(true))
@@ -82,7 +82,6 @@ describe('laundry-reservation',()=>{
             expect(mockEmailService.send).toBeCalledTimes(1)
 
             expect(mockEmailService.send).toBeCalledWith(0,"1",123)
-
 
         })
 
