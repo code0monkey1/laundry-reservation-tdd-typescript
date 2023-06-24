@@ -155,7 +155,6 @@ class LaundryReservation implements ILaundryReservation {
          this.emailService.send(machineNumber,reservationId,pin)
 
        // save to db
-
        this.dbService.create(reservationId,email)
 
      }
