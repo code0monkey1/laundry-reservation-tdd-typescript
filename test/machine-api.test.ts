@@ -50,7 +50,7 @@ describe('machine-api', () => {
 
            describe('Device found',()=>{
 
-             describe('Device Lock Api',()=>{
+             describe('Lock',()=>{
   
             
                it('returns true when conditions are fulfilled',()=>{
@@ -107,10 +107,38 @@ describe('machine-api', () => {
 
                //Assert
                 expect(mockDevice.Lock).toBeCalledWith(reservationId,reservationDateTime,pin)
-                
+
                expect(result).toBe(false)
   
         })
+             
+      
+      })
+
+             describe('Unlock',()=>{
+                
+              test('calls unlock while passing  machine number and reservation id',()=>{
+                  
+                 const mockDevice :IMachineDevice={
+                   Lock: jest.fn(()=>{
+                     return false
+                   }),
+                   Unlock: jest.fn()
+                 }
+  
+               const sut = new MachineApi([mockDevice])
+  
+               const reservationId:string="1" 
+               const machineNumber:number =0
+  
+               //Act
+                 sut.unlock(machineNumber,reservationId)
+
+               //Assert
+                expect(mockDevice.Unlock).toBeCalledWith(machineNumber,reservationId)
+
+              })
+
              })
 
            })
@@ -121,12 +149,12 @@ describe('machine-api', () => {
 
 interface IMachineDevice{
      Lock( reservationId:string,  reservationDateTime:Date,  pin:number):boolean
-     Unlock( reservationId:string):void
+     Unlock(machineNumber:number,reservationId:string):void
 }
 interface IMachineAPI{ 
 
      lock(reservationId:string ,machineNumber:number,reservationDateTime:Date,pin:number):boolean
-     unlock( reservationId:string):void
+     unlock(machineNumber:number, reservationId:string):void
 
 } 
 
@@ -151,8 +179,8 @@ class MachineApi implements IMachineAPI{
 
     return lockGranted
   }
-  unlock(reservationId: string): void {
-    throw new Error("Method not implemented.")
+  unlock(machineNumber:number,reservationId: string): void {
+    
   }
   
 }
