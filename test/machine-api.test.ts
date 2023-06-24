@@ -5,12 +5,6 @@ describe('machine-api', () => {
             
            it('is defined',()=>{
              
-              const mockDevice :IMachineDevice={
-                Lock: jest.fn(()=>{
-                  return true
-                }),
-                Unlock: jest.fn()
-              }
 
              //Arrange
              const sut = new MachineApi([])
@@ -24,15 +18,6 @@ describe('machine-api', () => {
              it('returns error : `Device with machineNumber: 1 not found`, if device not found',()=>{
   
                //Arrange
-              const mockDevice :IMachineDevice={
-                  Lock: jest.fn(()=>{
-                    return true
-                  }),
-                  Unlock: jest.fn(()=>{
-                     return false
-                  })
-                }
-  
                const sut = new MachineApi([])
   
                const reservationId:string="1" 
@@ -60,9 +45,7 @@ describe('machine-api', () => {
                     Lock: jest.fn(()=>{
                       return true
                     }),
-                    Unlock: jest.fn(()=>{
-                      return false
-                    })
+                    Unlock: jest.fn()
                   }
     
                 const sut = new MachineApi([mockDevice])
@@ -90,9 +73,7 @@ describe('machine-api', () => {
                    Lock: jest.fn(()=>{
                      return false
                    }),
-                   Unlock: jest.fn(()=>{
-                     return false
-                   })
+                   Unlock: jest.fn()
                  }
   
                const sut = new MachineApi([mockDevice])
@@ -115,8 +96,8 @@ describe('machine-api', () => {
       
       })
 
-        
-     })
+    
+    })
 
     describe('unlock',()=>{
                 
@@ -142,7 +123,8 @@ describe('machine-api', () => {
 
               })
 
-             })
+             
+            })
              
 })
 
