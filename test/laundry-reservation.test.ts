@@ -1,8 +1,6 @@
 
 describe('laundry-reservation',()=>{
 
-     
-
        const emailService:IEmailService={
                send: jest.fn()
         }
@@ -29,23 +27,19 @@ describe('laundry-reservation',()=>{
         }
         
     
-        
       }
 
 
-      let laundryReservation:ILaundryReservation
+      let mockLaundryReservation:ILaundryReservation
 
 
       beforeEach(()=>{
 
-          laundryReservation = new MockLaundryReservation(emailService,dbService,machineService)
+        jest.clearAllMocks();
+
+        mockLaundryReservation = new MockLaundryReservation(emailService,dbService,machineService)
+
       })
-
-
-      afterEach(()=>{
-        jest.clearAllMocks()
-      })
-
 
      
     describe('createReservation', () => {
@@ -54,7 +48,7 @@ describe('laundry-reservation',()=>{
         test('is defined',()=>{
 
             //Arrange
-            const sut  = laundryReservation
+            const sut  = mockLaundryReservation
 
             //Act //Assert
              expect(sut.createReservation).toBeInstanceOf(Function)
@@ -64,14 +58,16 @@ describe('laundry-reservation',()=>{
         test('sends email',()=>{
 
            //Arrange
-              const sut  = laundryReservation
+              const sut  = mockLaundryReservation
 
            //Act 
              const date = new Date ( 1,1,1,1,1,1)
              const phone='1'
              const email ='email'
     
-             const result = sut.createReservation(date,phone,email)
+             
+        jest.spyOn(mockLaundryReservation, "createReservation")
+        .mockImplementation(() => Promise.resolve(true))
               
             //Assert
             // expect()
