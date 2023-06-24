@@ -1,3 +1,8 @@
+export interface IMachineDevice{
+  lock(reservationId:string,reservationDateTime:string,pin:number):boolean
+  unlock(reservationId:string):void
+}
+
 export default class MachineService implements IMachineService{
    
   constructor(private machines:Array<number>){}
