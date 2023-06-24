@@ -6,27 +6,38 @@ describe('laundry-reservation',()=>{
       let mockMachineService:IMachineService
 
 
-       const emailService:IEmailService={
-               send: jest.fn()
+       class MockEmailService implements IEmailService{
+         send(machineNumber: number, reservationId: string, pin: number): void {
+           throw new Error("Method not implemented.")
+         }
+               
         }
 
-      const dbService:IDbService={
-               create: jest.fn()
+       class  MockDbService implements IDbService{
+         create(): void {
+           throw new Error("Method not implemented.")
+         }
+             
       }
 
 
-      const machineService :IMachineService={
-               lock: jest.fn(),
-               unlock: jest.fn()
+      class MockMachineService implements IMachineService{
+        lock(reservationId: string, reservationDateTime: Date, pin: number): boolean {
+          throw new Error("Method not implemented.")
+        }
+        unlock(reservationId: string): void {
+          throw new Error("Method not implemented.")
+        }
+           
       }
 
       beforeEach(()=>{
 
         jest.clearAllMocks();
 
-        mockEmailService=emailService
-        mockDbService=dbService
-        mockMachineService= machineService
+        mockEmailService= new MockEmailService()
+        mockDbService=new MockDbService()
+        mockMachineService= new MockMachineService()
 
       })
 
@@ -68,9 +79,9 @@ describe('laundry-reservation',()=>{
             //Assert
             sut.createReservation(date,phone,email)
 
-            expect(emailService.send).toBeCalledTimes(1)
+            expect(mockEmailService.send).toBeCalledTimes(1)
 
-            expect(emailService.send).toBeCalledWith(0,"1",123)
+            expect(mockEmailService.send).toBeCalledWith(0,"1",123)
 
 
         })
