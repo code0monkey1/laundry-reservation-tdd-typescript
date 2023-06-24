@@ -1,4 +1,4 @@
-class MachineService implements IMachineService{
+export default class MachineService implements IMachineService{
    
   constructor(private machines:Array<number>){}
 
