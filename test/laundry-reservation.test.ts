@@ -16,7 +16,9 @@ describe('laundry-reservation',()=>{
       }
 
       class MockLaundryReservation implements ILaundryReservation{
-
+      
+        private machines=Array<number>(25).fill(-1)
+       
          constructor( 
            private readonly emailService:IEmailService,
            private readonly dbService:IDbService ,
@@ -70,7 +72,7 @@ describe('laundry-reservation',()=>{
           .mockImplementation(() => 
           
             {
-                
+                      
                 emailService.send(1,"1",1)
                 
             }
@@ -113,12 +115,17 @@ interface IMachineService{
 } 
   
 class LaundryReservation implements ILaundryReservation {
-      
 
-     constructor( private readonly emailService:IEmailService, private readonly dbService:IDbService ,private readonly machineService:IMachineService){}
+     
+     constructor( 
+      private readonly emailService:IEmailService, 
+      private readonly dbService:IDbService ,
+      private readonly machineService:IMachineService){}
 
        
      createReservation(dateTime:Date,phone:string,email:string){
+
+
          
          this.emailService.send(1,"1",1)
 
