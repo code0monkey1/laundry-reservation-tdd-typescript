@@ -13,12 +13,10 @@ class LaundryReservation implements ILaundryReservation {
        }
 
        reserve(machineId:number,pin:number){
-
-
+          
+             
+     
        }
-
-
-
 
 }
 
