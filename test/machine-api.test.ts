@@ -116,12 +116,11 @@ describe('machine-api', () => {
       })
 
         
-     
      })
 
-      describe('unlock',()=>{
+    describe('unlock',()=>{
                 
-              test('calls unlock while passing  machine number and reservation id',()=>{
+              test('calls Unlock on Device Api on passing  machine number and reservation id',()=>{
                   
                  const mockDevice :IMachineDevice={
                    Lock: jest.fn(()=>{
