@@ -15,6 +15,13 @@ describe('laundry-reservation',()=>{
             
         })
 
+        test('Takes in Reservation date and time,Cell phone number,Email address',()=>{
+
+
+
+
+        })
+
 
       
     })
@@ -23,13 +30,13 @@ describe('laundry-reservation',()=>{
 })
 
 interface ILaundryReservation{
-   createReservation:(date:string,time:string,phone:string,email:string)=>void
+   createReservation:(dateTime:Date,phone:string,email:string)=>void
 }
 
 function getLaundryReservation():ILaundryReservation {
 
   return {
-     createReservation(data:string,time:string,phone:string,email:string){
+     createReservation(dateTime:Date,phone:string,email:string){
 
 
      }
