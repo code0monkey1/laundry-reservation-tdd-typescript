@@ -11,7 +11,7 @@ export interface IDataBase{
 }
 
  class DataBase implements IDataBase{
-  
+
    create(reservation: Reservation): Promise<void> {
      throw new Error("Method not implemented.")
    }
@@ -25,8 +25,7 @@ export interface IDataBase{
      throw new Error("Method not implemented.")
    }
     
-      
-
+    
 }
 
 export default DataBase

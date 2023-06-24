@@ -1,3 +1,4 @@
+import { IDataBase } from "./DataBase";
 import { Reservation } from "./Reservation";
 
 export interface ILaundryReservation{
@@ -7,14 +8,11 @@ export interface ILaundryReservation{
 
 class LaundryReservation implements ILaundryReservation {
       
-       private reservation:Reservation[]
-       constructor(reservation:Reservation[]){
-         this.reservation=reservation
-       }
+       constructor(private readonly reservations:Reservation[], private readonly db:IDataBase){}
 
        reserve(machineId:number,pin:number){
           
-             
+            //  const machine = this.db.read()
      
        }
 
