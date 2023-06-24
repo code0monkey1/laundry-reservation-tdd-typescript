@@ -21,32 +21,32 @@ describe('machine-api', () => {
              expect(sut.lock).toBeDefined()
 
            })
+           it('returns error : `Device with machineNumber: 1 not found`, if device not found',()=>{
+
+             //Arrange
+            const mockDevice :IMachineDevice={
+                Lock: jest.fn(()=>{
+                  return true
+                }),
+                Unlock: jest.fn(()=>{
+                   return false
+                })
+              }
+
+             const sut = new MachineApi([])
+
+             const reservationId:string="1" 
+             const machineNumber:number =1
+             const reservationDateTime:Date=new Date(1,1,1,1,1,1)
+             const pin:number=12345
+
+             //Act //Assert
+             expect(()=>sut.lock(reservationId,machineNumber,reservationDateTime,pin)).toThrowError(`Device with machineNumber: 1 not found`)
+
+           })
            
            describe('Device Lock Api',()=>{
 
-             it('returns error : `Device with machineNumber: 1 not found`',()=>{
-  
-               //Arrange
-              const mockDevice :IMachineDevice={
-                  Lock: jest.fn(()=>{
-                    return true
-                  }),
-                  Unlock: jest.fn(()=>{
-                     return false
-                  })
-                }
-  
-               const sut = new MachineApi([])
-  
-               const reservationId:string="1" 
-               const machineNumber:number =1
-               const reservationDateTime:Date=new Date(1,1,1,1,1,1)
-               const pin:number=12345
-  
-               //Act //Assert
-               expect(()=>sut.lock(reservationId,machineNumber,reservationDateTime,pin)).toThrowError(`Device with machineNumber: 1 not found`)
-  
-             })
 
              it('returns true when device is found`',()=>{
   
