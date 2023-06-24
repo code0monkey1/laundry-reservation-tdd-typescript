@@ -179,8 +179,16 @@ class MachineApi implements IMachineAPI{
 
     return lockGranted
   }
+
   unlock(machineNumber:number,reservationId: string): void {
-    
+     
+      const device = this.devices[machineNumber]
+
+      if(!device)
+         throw new Error(`Device with machineNumber: ${machineNumber} not found`)
+
+      device.Unlock(machineNumber,reservationId)
+  
   }
   
 }
