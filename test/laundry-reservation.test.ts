@@ -10,12 +10,12 @@ describe('laundry-reservation',()=>{
              //Arrange
               const sut  = getLaundryReservation()
 
-              //Act
-              
-
-              //Assert
+              //Act //Assert
+              expect(sut.reserveMachine).toBeInstanceOf(Function)
             
         })
+
+
       
     })
     
@@ -31,7 +31,7 @@ function getLaundryReservation():ILaundryReservation {
   return {
      reserveMachine(data:string,time:string,phone:string,email:string){
 
-      
+
      }
   }
 }
