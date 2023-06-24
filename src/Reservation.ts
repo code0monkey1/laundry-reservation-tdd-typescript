@@ -12,11 +12,15 @@ export class Reservation {
     private readonly phoneNumber: string) {}
 
   getFailedAttempts(){
-    this.failedAttempts
+   return this.failedAttempts
   }
 
-  markAsFiledAttempt(){
+  markAsFailedAttempt(){
     this.failedAttempts++
+  }
+
+  getPin(){
+     return this.pin
   }
 
 
