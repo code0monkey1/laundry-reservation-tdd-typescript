@@ -59,8 +59,9 @@ describe('laundry-reservation',()=>{
              expect(sut.createReservation).toBeInstanceOf(Function)
             
         })
+        
 
-        test('sends email with machine number, reservation ID and a 5 digit PIN',()=>{
+        test('sends email with machine number : 0, reservation ID :1 , and a 5 digit PIN : 12345',()=>{
 
 
               jest.spyOn(mockEmailService,'send').mockImplementation(()=>Promise.resolve(true))
@@ -81,11 +82,14 @@ describe('laundry-reservation',()=>{
 
             expect(mockEmailService.send).toBeCalledTimes(1)
 
-            expect(mockEmailService.send).toBeCalledWith(0,"1",123)
+            expect(mockEmailService.send).toBeCalledWith(0,"1",12345)
 
         })
 
-        test('calls machine api')
+        test('saves reservation to db',()=>{
+
+
+        })
 
 
       
@@ -145,7 +149,7 @@ class LaundryReservation implements ILaundryReservation {
 
      private getPin(){
          //TODO
-              return 123
+              return 12345
      }
 
      initialize(machines :Array<number>){
