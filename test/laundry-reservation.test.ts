@@ -52,10 +52,7 @@ describe('laundry-reservation',()=>{
         test('sends email',()=>{
 
 
-              jest.spyOn(mockEmailService,'send').mockImplementation(()=>{
-
-                  
-              })
+              jest.spyOn(mockEmailService,'send').mockImplementation(()=>Promise.resolve(true))
 
             //Arrange
                   const sut  = new LaundryReservation(
