@@ -3,6 +3,16 @@ export interface IMachineDevice{
   unlock(reservationId:string):void
 }
 
+export interface IMachineAPI {
+
+  devices: { [key: number]: IMachineDevice };
+  lockMachine(reservationId: string, machineNumber: number, reservationDateTime: Date): boolean;
+  unlockMachine(machineNumber: number, reservationId: string): void;
+  claimReservation(machineId: number, pin: number): boolean;
+  
+}
+
+
 export default class MachineService implements IMachineService{
    
   constructor(private machines:Array<number>){}
