@@ -3,11 +3,13 @@ import { ReservationRepository } from '../interfaces';
 import { Reservation } from '../models/Reservation';
 
 export class InMemoryReservationRepository implements ReservationRepository {
+
+  private reservations: Reservation[] = [];
+
   
   getAll(): Reservation[] {
     throw new Error('Method not implemented.');
   }
-  private reservations: Reservation[] = [];
 
   save(reservation: Reservation): void {
     this.reservations.push(reservation);

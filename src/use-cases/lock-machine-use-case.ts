@@ -11,7 +11,9 @@ export class LockMachineInteractor implements LockMachineUseCase {
   ) {}
 
   execute(machineNumber: number, reservationId: string): boolean {
+
     const reservation = this.reservationRepository.getById(reservationId);
+    
     if (reservation && reservation.machineNumber === machineNumber) {
       const locked = this.machineDevice.lock(
         reservationId,
