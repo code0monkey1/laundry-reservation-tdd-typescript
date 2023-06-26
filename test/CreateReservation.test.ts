@@ -15,6 +15,10 @@ describe('CreateReservation', () => {
           })
           
        }
+
+       getSentMail(){
+        return this.mailSent
+       }
       
      }
 
@@ -68,6 +72,9 @@ describe('CreateReservation', () => {
      //Act
        
        createReservation.execute(reservationDateTime,phoneNumber,email)
+        
+       const sentMail = mockEmailService.getSentMail()
+       expect(sentMail).toStrictEqual([{machineNumber:1,pin:"3",reservationId:"2",}])
 
      //Assert
 
