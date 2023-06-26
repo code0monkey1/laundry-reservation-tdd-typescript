@@ -4,7 +4,7 @@ export default class CreateReservation{
 
   constructor(private readonly email:EmailService,
     private readonly reservationRepository :ReservationRepositoryService,
-
+    private readonly machineApi :MachineApi
     ){}
   
     execute(reservationDateTime:Date,phoneNumber:string,email:string){
