@@ -1,7 +1,9 @@
 export type Reservation={
    
   pin:string,
-  date:Date,
-  email:string
-
+  reservationDateTime:Date,
+  email:string,
+  reservationId:string,
+  machineNumber:string
+  
 }

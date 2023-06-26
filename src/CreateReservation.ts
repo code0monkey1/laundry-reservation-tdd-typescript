@@ -1,6 +1,6 @@
 import { Reservation } from "./types/Reservation"
 
-class CreateReservation{
+export default class CreateReservation{
 
   constructor(emailService:EmailService){
 
@@ -12,11 +12,11 @@ class CreateReservation{
 
 }
 
-interface EmailService{
+export interface EmailService{
    send(machineNumber:number,reservationId:string,pin:string):void
 }
 
-interface RepositoryService{
+export interface ReservationRepositoryService{
 
     save(reservation:Reservation):void
 }
