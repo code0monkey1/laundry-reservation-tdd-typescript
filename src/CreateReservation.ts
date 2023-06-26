@@ -25,11 +25,11 @@ export default class CreateReservation{
 
     private generateReservationId(){
 
-         return Math.floor(10000* Math.random())+''
+         return 2+""
     }
 
     private generatePin(){
-        return Math.floor(1000000* Math.random())+''
+        return 3+""
     }
 
 }
