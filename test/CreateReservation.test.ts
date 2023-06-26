@@ -4,8 +4,16 @@ import { Reservation } from "../src/types/Reservation";
 describe('CreateReservation', () => {
 
      class MockEmailService implements EmailService{
+       private mailSent:any[]=[]
+       
        send(machineNumber: number, reservationId: string, pin: string): void {
-         throw new Error("Method not implemented.");
+       
+        this.mailSent.push( {
+            machineNumber,
+            reservationId,
+            pin
+          })
+          
        }
       
      }
