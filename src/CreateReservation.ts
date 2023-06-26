@@ -3,7 +3,7 @@ import { Reservation } from "./types/Reservation"
 export default class CreateReservation{
 
   constructor(private readonly email:EmailService,
-    private readonly reservationRepository :ReservationRepositoryService,
+    private readonly reservationRepository :ReservationRepository,
     private readonly machineApi :MachineApi
     ){}
   
@@ -22,7 +22,7 @@ export interface EmailService{
    send(machineNumber:string,reservationId:string,pin:string):void
 }
 
-export interface ReservationRepositoryService{
+export interface ReservationRepository{
 
     save(reservation:Reservation):void
 }
