@@ -22,7 +22,7 @@ describe('CreateReservation', () => {
 
      class MockReservationRepository implements ReservationRepository{
        getFreeMachineNumber(): number {
-         throw new Error("Method not implemented.");
+         return 1
        }
        save(reservation: Reservation): void {
          throw new Error("Method not implemented.");
