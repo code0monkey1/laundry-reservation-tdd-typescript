@@ -1,4 +1,4 @@
-import { EmailService, MachineApi, ReservationRepository } from "../src/CreateReservation";
+import CreateReservation, { EmailService, MachineApi, ReservationRepository } from "../src/CreateReservation";
 import { Reservation } from "../src/types/Reservation";
 
 describe('CreateReservation', () => {
@@ -33,19 +33,30 @@ describe('CreateReservation', () => {
      let mockReservationRepository:ReservationRepository
 
      beforeEach( ()=>{
-
-
+      
+        jest.clearAllMocks()
+        mockEmailService = new MockEmailService()
+        mockMachineApi= new MockMachineApi()
+        mockReservationRepository=new MockReservationRepository()
       
      })
     
   test('sends email',()=>{
 
      //Arrange
-
-
+       const createReservation = new CreateReservation(
+                                                  mockEmailService,
+                                                  mockReservationRepository,
+                                                  mockMachineApi)
+       
+     
+       const reservationDateTime = new Date('01/01/2020') 
+       const phoneNumber='1'  
+       const email="mail@gmail.com"                                        
 
      //Act
-
+       
+       createReservation.execute(reservationDateTime,phoneNumber,email)
 
      //Assert
 

@@ -9,11 +9,11 @@ export default class CreateReservation{
   
     execute(reservationDateTime:Date,phoneNumber:string,email:string){
 
-         //Sends confirmation email with a machine number, reservation ID and a 5 digit PIN
+      //Send lock instruction to selected machine via Machine API
 
-         //Saves reservation to the DB
+      //Saves reservation to the DB
 
-         //Send lock instruction to selected machine via Machine API
+      //Sends confirmation email with a machine number, reservation ID and a 5 digit PIN
     }
 
 }
