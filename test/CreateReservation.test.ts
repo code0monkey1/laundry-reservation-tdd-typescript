@@ -4,7 +4,7 @@ import { Reservation } from "../src/types/Reservation";
 describe('CreateReservation', () => {
 
      class MockEmailService implements EmailService{
-       send(machineNumber: string, reservationId: string, pin: string): void {
+       send(machineNumber: number, reservationId: string, pin: string): void {
          throw new Error("Method not implemented.");
        }
       
@@ -21,6 +21,9 @@ describe('CreateReservation', () => {
      }
 
      class MockReservationRepository implements ReservationRepository{
+       getFreeMachineNumber(): number {
+         throw new Error("Method not implemented.");
+       }
        save(reservation: Reservation): void {
          throw new Error("Method not implemented.");
        }
