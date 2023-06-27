@@ -4,6 +4,7 @@ import { Reservation } from "../src/types/Reservation";
 describe('CreateReservation', () => {
 
      class MockEmailService implements EmailService{
+      
        private mailSent:{machineNumber:number,reservationId:string,pin:string}[]=[]
        
        send(machineNumber: number, reservationId: string, pin: string): void {
