@@ -94,3 +94,9 @@ describe('Machine Api', () => {
     it.todo('unlocks machine using machineNumber and reservationId')
 })
 
+
+describe('ClaimReservation', () => {
+  
+})
+
+
