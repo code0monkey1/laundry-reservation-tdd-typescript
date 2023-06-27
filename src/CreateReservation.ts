@@ -29,7 +29,7 @@ export default class CreateReservation{
     }
 
     private generatePin(){
-        return 3+""
+        return 12345+""
     }
 
 }
