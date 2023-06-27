@@ -85,3 +85,12 @@ describe('CreateReservation', () => {
 
     
 })
+
+
+describe('Machine Api', () => {
+     
+    it.todo('locks machine using machine number, DateTime of reservation and reservationId')
+
+    it.todo('unlocks machine using machineNumber and reservationId')
+})
+
