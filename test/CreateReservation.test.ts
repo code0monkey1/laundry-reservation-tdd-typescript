@@ -81,4 +81,7 @@ describe('CreateReservation', () => {
   })
 
     it.todo('saves reservation to db')
+    it.todo('sends lock instructions to selected machine')
+
+    
 })
