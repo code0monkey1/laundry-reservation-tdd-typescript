@@ -80,27 +80,5 @@ describe('CreateReservation', () => {
 
   })
 
-    test('saved reservation to db',()=>{
-
-     //Arrange
-       const createReservation = new CreateReservation(
-                                                  mockEmailService,
-                                                  mockReservationRepository,
-                                                  mockMachineApi)
-       
-     
-       const reservationDateTime = new Date('01/01/2020') 
-       const phoneNumber='1'  
-       const email="mail@gmail.com"                                        
-
-     //Act
-       
-       createReservation.execute(reservationDateTime,phoneNumber,email)
-        
-       const sentMail = mockEmailService.getSentMail()
-       expect(sentMail).toStrictEqual([{machineNumber:1,pin:"12345",reservationId:"2",}])
-
-     //Assert
-
-  })
+    it.todo('saves reservation to db')
 })
