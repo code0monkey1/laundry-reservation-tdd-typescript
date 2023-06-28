@@ -16,16 +16,11 @@ export class LockMachine implements LockMachineUseCase{
       if(reservationResponseModel){
      
           //updating entry
-          const updatedPin=getPin()
-          const updatedDateTime = getReservedDateTime()
-        const locked:boolean= await this.machineDevice.lock(lockRequest.reservationId,updatedDateTime,updatedPin)
+           await this.machineDevice.lock(lockRequest.reservationId,getReservedDateTime(),getPin())
 
-
-         if(locked){
-              return true;
-         }
-       
+          return true; 
       }
+
        //return true if machine was unlocked and can be locked at given dateTime
 
     

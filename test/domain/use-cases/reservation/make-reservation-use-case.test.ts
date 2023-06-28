@@ -133,7 +133,7 @@ describe('Make Reservation Use Case',()=>{
 
           })
 
-          it.todo('If the reservationId already exist, then update the pin and DateTime returning true.',()=>{
+          it('If the reservationId already exist, then update the pin and DateTime returning true.',()=>{
                 
                
             const reservationDateTime='01/01/2020, 01:01:12'
