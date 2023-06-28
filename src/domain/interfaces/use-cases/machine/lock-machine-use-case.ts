@@ -1,8 +1,7 @@
 export interface LockMachineUseCase {
          
-  execute(reservationId:string, machineNumber:string, reservationDateTime:string):Promise<boolean>
+  execute(lockRequest:LockRequest):Promise<boolean>
         
-
 }
 
 
@@ -24,7 +23,7 @@ export type LockRequest={
 export interface MachineDevice{
 
     lock(reservationId:string,  reservationDateTime:string,  pin:string):boolean
-    
+
     unlock( reservationId:string):void
 
 }

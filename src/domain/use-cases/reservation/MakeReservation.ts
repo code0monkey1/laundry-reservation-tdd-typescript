@@ -1,5 +1,6 @@
 
 import { ReservationRepository } from '../../interfaces/repositories/reservation-repository';
+import { LockMachineUseCase } from '../../interfaces/use-cases/machine/lock-machine-use-case';
 import { MakeReservationUseCase } from '../../interfaces/use-cases/reservation/make-reservation-use-case';
 
 
@@ -9,7 +10,7 @@ export default class MakeReservation implements MakeReservationUseCase{
   constructor(
     private readonly emailService:EmailService,
     private readonly reservationRepo:ReservationRepository,
-    private readonly machine:MachineApi){}
+    private readonly lockMachine:LockMachineUseCase){}
 
   async execute(reservationDateTime: string, phoneNumber: string, email: string) {
 
@@ -23,7 +24,7 @@ export default class MakeReservation implements MakeReservationUseCase{
         await this.reservationRepo.save({machineNumber,reservationId,pin})
 
 
-        const wasLocked=await this.machine.lock({machineNumber,reservationId,reservedDateTime:reservationDateTime})
+        const wasLocked=await this.lockMachine.execute({machineNumber,reservationId,reservedDateTime:reservationDateTime})
         
 
         if(!wasLocked){
