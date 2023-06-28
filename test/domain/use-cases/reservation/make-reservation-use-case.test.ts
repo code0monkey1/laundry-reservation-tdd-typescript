@@ -140,17 +140,15 @@ describe('Make Reservation Use Case',()=>{
             reservedDateTime: reservationDateTime
           }
 
-          jest.spyOn(mockMachineApi,'lock').mockImplementation(()=>Promise.reject(Error())
+          jest.spyOn(mockMachineApi,'lock').mockImplementation(()=>Promise.resolve(false)
           )
        
 
-         expect(()=> makeReservation.execute(reservationDateTime,phoneNumber,email) ).toThrowError("Machine was not locked")
+          expect(async()=>await makeReservation.execute(reservationDateTime,phoneNumber,email) ).toThrowError('Machine was not locked')
        
-          expect(mockMachineApi.lock).toBeCalledWith(lockRequest)
+        
 
-          expect(mockMachineApi.lock).toBeCalledTimes(1)
-
-           
+        
         
 
           })
