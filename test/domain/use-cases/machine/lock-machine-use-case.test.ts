@@ -65,7 +65,7 @@ describe('Lock Machine Use Case',()=>{
          
       })
 
-      it.todo('In all other cases return false',async()=>{
+      it('In all other cases return false',async()=>{
    
                 //Arrange
          const lockMachine = new LockMachine(mockReservationRepository,mockMachineDevice)
@@ -81,13 +81,13 @@ describe('Lock Machine Use Case',()=>{
              return null
             
          })
+         
          //Act
         const result= await lockMachine.execute(lockRequest)
 
          //Assert
-        expect(result).toBeTruthy()
+        expect(result).not.toBeTruthy()
          
-
       })
      
 })
