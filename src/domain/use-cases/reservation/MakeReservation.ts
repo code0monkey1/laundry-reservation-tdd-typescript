@@ -46,7 +46,6 @@ export default class MakeReservation implements MakeReservationUseCase{
       return '12345'
   }
 
-
   
 }
 
