@@ -51,7 +51,7 @@ describe('Make Reservation Use Case',()=>{
      
   describe('Make Reservation', () => {
     
-    describe('Should Execute All Reservation Functions',()=>{
+
          
          it('should send reservation email',()=>{
         
@@ -130,8 +130,6 @@ describe('Make Reservation Use Case',()=>{
           })
 
         })
-
-  })
   
 
 })
