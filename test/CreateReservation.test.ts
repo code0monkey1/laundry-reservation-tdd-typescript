@@ -27,8 +27,18 @@ describe('Laundry Reservation', () => {
        }
   
        class MockMachineApi implements MachineApi{
-         lock(reservationId: string, machineNumber: string, reservationDateTime: Date): boolean {
-           throw new Error("Method not implemented.");
+
+         private lockInstructions:Omit<LockInstructions,'pin'>[]=[]
+
+         lock(reservationId: string, machineNumber: number, reservationDateTime: Date): boolean {
+           this.lockInstructions.push({
+            machineNumber,
+            reservationDateTime,
+            reservationId
+
+           })
+
+           return true
          }
          unlock(machineNumber: string, reservationId: string): void {
            throw new Error("Method not implemented.");
@@ -143,6 +153,9 @@ describe('Laundry Reservation', () => {
                                                     mockMachineApi)
          
         createReservation.execute(reservationDateTime,phoneNumber,email)
+
+
+
   
        
 

@@ -58,6 +58,6 @@ export interface ReservationRepository{
 }
 
 export interface MachineApi{
-     lock(reservationId:string, machineNumber:string, reservationDateTime:Date):boolean
+     lock(reservationId:string, machineNumber:number, reservationDateTime:Date):boolean
      unlock(machineNumber:string, reservationId:string):void
 }
