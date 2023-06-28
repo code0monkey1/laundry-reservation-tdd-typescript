@@ -48,6 +48,8 @@ describe('Make Reservation Use Case',()=>{
 
           expect(mockEmailService.send).toBeCalledWith(emailRequest)
 
+          expect(arr).toStrictEqual([emailRequest])
+
          })
       
    
