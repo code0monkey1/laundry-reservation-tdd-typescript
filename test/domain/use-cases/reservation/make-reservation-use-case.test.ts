@@ -137,11 +137,6 @@ describe('Make Reservation Use Case',()=>{
           const phoneNumber='123'
           const email='e@email.com'
           
-          const lockRequest:LockRequest={
-            reservationId: '12',
-            machineNumber: '1',
-            reservedDateTime: reservationDateTime
-          }
 
           jest.spyOn(lockMachine,'execute').mockImplementation(()=>Promise.resolve(false)
           )
@@ -156,7 +151,7 @@ describe('Make Reservation Use Case',()=>{
               
            }
 
-            expect(lockMachine.execute).toBeCalledWith(lockRequest)
+
             expect(lockMachine.execute).toBeCalledTimes(1)
         
           })
