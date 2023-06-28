@@ -4,7 +4,9 @@ import { MakeReservationUseCase } from '../../interfaces/use-cases/reservation/m
 
 export default class MakeReservation implements MakeReservationUseCase{
 
-  constructor(private readonly emailService:EmailService,private readonly reservationRepo:ReservationRepository){}
+  constructor(
+    private readonly emailService:EmailService,
+    private readonly reservationRepo:ReservationRepository){}
 
   async execute(reservationDateTime: string, phoneNumber: string, email: string) {
 
