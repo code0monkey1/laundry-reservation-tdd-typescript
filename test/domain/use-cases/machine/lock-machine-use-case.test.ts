@@ -41,14 +41,17 @@ describe('Lock Machine Use Case',()=>{
                reservedDateTime: ''
          }
 
-         jest.spyOn(mockMachineDevice,'lock').mockImplementation(() =>{
+         jest.spyOn(mockMachineDevice,'lock').mockImplementation((reservationId: string, reservationDateTime: string, pin: string) =>{
+
                  return true
             })
 
-         lockMachine.execute(lockRequest)
+        
          //Act
-
+          lockMachine.execute(lockRequest)
+         
          //Assert
+         expect(mockMachineDevice.lock).toBeCalledWith(lockRequest)
       })
 
       it.todo('If the reservationId already exist, then update the pin and DateTime returning true.')
