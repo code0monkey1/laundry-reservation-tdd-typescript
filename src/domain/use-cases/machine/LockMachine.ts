@@ -10,15 +10,20 @@ export class LockMachine implements LockMachineUseCase{
 
   async execute(lockRequest: LockRequest): Promise<boolean> {
        
-       const {pin}:ReservationResponseModel= await this.reservationRepository.getById(lockRequest.reservationId)
-      
-       //return true if machine was unlocked and can be locked at given dateTime
-      const locked:boolean= await this.machineDevice.lock(lockRequest.reservationId,lockRequest.reservedDateTime,pin)
+       const reservationResponseModel= await this.reservationRepository.getById(lockRequest.reservationId)
 
-      if(locked){
+      if(reservationResponseModel){
+
+        const locked:boolean= await this.machineDevice.lock(lockRequest.reservationId,lockRequest.reservedDateTime,reservationResponseModel.pin)
+
+         if(locked){
               return true;
       }
      
+      }
+       //return true if machine was unlocked and can be locked at given dateTime
+
+    
        return false;
   }
 
