@@ -21,6 +21,7 @@ describe('Make Reservation Use Case',()=>{
      }
 
      class MockMachineApi implements MachineApi{
+      
        lock(lockRequest:LockRequest): boolean {
          throw new Error('Method not implemented.');
        }
@@ -34,6 +35,7 @@ describe('Make Reservation Use Case',()=>{
 
         mockEmailService = new MockEmailService()
         mockReservationRepository= new MockReservationRepository()
+        mockMachineApi = new MockMachineApi()
         
         makeReservation = new MakeReservation(mockEmailService,mockReservationRepository,mockMachineApi)
 
