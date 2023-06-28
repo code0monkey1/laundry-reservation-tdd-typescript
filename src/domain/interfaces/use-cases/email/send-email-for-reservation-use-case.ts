@@ -1,6 +1,6 @@
 export interface SendEmailForReservationUseCase{
     
-  send(emailRequest:RequestReservation):void
+  execute(emailRequest:RequestReservation):void
 
 }
 

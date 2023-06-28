@@ -1,5 +1,6 @@
 
 import { ReservationRepository } from '../../interfaces/repositories/reservation-repository';
+import { SendEmailForReservationUseCase } from '../../interfaces/use-cases/email/send-email-for-reservation-use-case';
 import { LockMachineUseCase } from '../../interfaces/use-cases/machine/lock-machine-use-case';
 import { MakeReservationUseCase } from '../../interfaces/use-cases/reservation/make-reservation-use-case';
 
@@ -8,7 +9,7 @@ import { MakeReservationUseCase } from '../../interfaces/use-cases/reservation/m
 export default class MakeReservation implements MakeReservationUseCase{
 
   constructor(
-    private readonly emailService:EmailService,
+    private readonly sendEmailForReservation:SendEmailForReservationUseCase,
     private readonly reservationRepo:ReservationRepository,
     private readonly lockMachine:LockMachineUseCase){}
 
@@ -19,7 +20,8 @@ export default class MakeReservation implements MakeReservationUseCase{
          const pin  = this.getPin()
           
 
-        await this.emailService.send({emailAddress:email,machineNumber,reservationId,pin})
+        await this.sendEmailForReservation.execute({emailAddress:email,machineNumber,reservationId,pin})
+        
         
         await this.reservationRepo.save({machineNumber,reservationId,pin})
 

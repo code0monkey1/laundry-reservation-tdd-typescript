@@ -1,17 +1,26 @@
 import { ReservationRepository, ReservationRequestModel } from '../../../../src/domain/interfaces/repositories/reservation-repository';
+import { RequestReservation, SendEmailForReservationUseCase } from '../../../../src/domain/interfaces/use-cases/email/send-email-for-reservation-use-case';
 import { LockMachineUseCase, LockRequest } from '../../../../src/domain/interfaces/use-cases/machine/lock-machine-use-case';
 import MakeReservation, { EmailRequest, EmailService, MachineApi } from '../../../../src/domain/use-cases/reservation/MakeReservation';
 
 describe('Make Reservation Use Case',()=>{
 
-     class MockEmailService implements EmailService{
+    //  class MockEmailService implements EmailService{
 
-       async send(emailRequest: EmailRequest): Promise<void> {
-        //  throw new Error('Method not implemented.');
+    //    async send(emailRequest: EmailRequest): Promise<void> {
+    //     //  throw new Error('Method not implemented.');
      
-       }
+    //    }
 
-     }
+    //  }
+
+    class MockSendEmailForReservation implements SendEmailForReservationUseCase{
+      execute(emailRequest: RequestReservation): void {
+        // throw new Error('Method not implemented.');
+      }
+   
+      
+    }
 
      class MockReservationRepository implements ReservationRepository{
 
@@ -34,15 +43,15 @@ describe('Make Reservation Use Case',()=>{
 
      beforeEach(()=>{
 
-        mockEmailService = new MockEmailService()
+        sendEmailForReservation = new MockSendEmailForReservation()
         mockReservationRepository= new MockReservationRepository()
         lockMachine = new MockLockMachine()
         
-        makeReservation = new MakeReservation(mockEmailService,mockReservationRepository,lockMachine)
+        makeReservation = new MakeReservation(sendEmailForReservation,mockReservationRepository,lockMachine)
 
      })
 
-     let mockEmailService:EmailService ;
+     let sendEmailForReservation:SendEmailForReservationUseCase ;
      let lockMachine :LockMachineUseCase;
      let mockReservationRepository:ReservationRepository;
      
@@ -66,15 +75,15 @@ describe('Make Reservation Use Case',()=>{
             pin: '12345'
           }
 
-          jest.spyOn(mockEmailService,'send').mockImplementation(()=>{
+          jest.spyOn(sendEmailForReservation,'execute').mockImplementation(()=>{
 
                 Promise.resolve(true)
           })
 
           makeReservation.execute(reservationDateTime,phoneNumber,email)
 
-          expect(mockEmailService.send).toBeCalledWith(emailRequest)
-          expect(mockEmailService.send).toBeCalledTimes(1)
+          expect(sendEmailForReservation.execute).toBeCalledWith(emailRequest)
+          expect(sendEmailForReservation.execute).toBeCalledTimes(1)
 
          })
 
