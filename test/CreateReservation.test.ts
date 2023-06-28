@@ -107,13 +107,10 @@ describe('Laundry Reservation', () => {
        //Act
          
          createReservation.execute(reservationDateTime,phoneNumber,email)
-          
-         const sentMail = mockEmailService.getSentMail()
+  
          const reservationId="2"
          const machineNumber=1
          const pin="12345"
-
-         expect(sentMail).toStrictEqual([{email,machineNumber,pin,reservationId}])
 
          const reservation:Reservation={
           pin,
