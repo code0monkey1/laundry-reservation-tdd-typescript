@@ -23,7 +23,10 @@ describe('Lock Machine Use Case',()=>{
 
 
       beforeEach(()=>{
+       jest.clearAllMocks()
 
+       mockMachineDevice = new MockMachineDevice()
+       mockReservationRepository=new MockReservationRepository()
 
       })
 
