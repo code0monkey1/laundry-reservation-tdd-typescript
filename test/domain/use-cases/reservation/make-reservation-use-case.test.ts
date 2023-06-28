@@ -8,7 +8,6 @@ describe('Make Reservation Use Case',()=>{
          throw new Error('Method not implemented.');
        }
 
-    
      }
 
      beforeEach(()=>{
@@ -32,20 +31,19 @@ describe('Make Reservation Use Case',()=>{
           const phoneNumber='123'
           const email='e@email.com'
           
-          const emailRequest={
-            reservationDateTime,
-            phoneNumber,
-            emailAddress:email
+          const emailRequest:EmailRequest={
+            machineNumber: '1',
+            reservationId: '12',
+            emailAddress: email,
+            pin: '12345'
           }
 
           jest.spyOn(mockEmailService,'send').mockImplementation(()=>
             Promise.resolve(true)
           )
 
-
           makeReservation.execute(reservationDateTime,phoneNumber,email)
 
-        
           expect(mockEmailService.send).toBeCalledWith(emailRequest)
 
          })
