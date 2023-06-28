@@ -102,9 +102,30 @@ describe('Make Reservation Use Case',()=>{
 
          })
 
-         it.todo('should send lock instructions to selected machine')
-      
+         it('should send lock instructions to selected machine',async ()=>{
+          
+           const reservationDateTime='01/01/2020, 01:01:12'
+          const phoneNumber='123'
+          const email='e@email.com'
+          
+    
+          const reservationRequest:ReservationRequestModel={
+            machineNumber: '1',
+            reservationId: '12',
+            pin: '12345'
+          }
+
+          jest.spyOn(mockReservationRepository,'save').mockImplementation(()=>{
+
+             Promise.resolve(true)
+          })
+
+          await makeReservation.execute(reservationDateTime,phoneNumber,email)
+ 
+          expect(mockReservationRepository.save).toBeCalledWith(reservationRequest)
    
+          })
+
         })
 
   })
