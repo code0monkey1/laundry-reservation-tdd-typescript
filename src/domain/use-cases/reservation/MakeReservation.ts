@@ -10,9 +10,9 @@ export default class MakeReservation implements MakeReservationUseCase{
          const reservationId = this.getReservationId()
          const pin  = this.getPin()
 
-         this.emailService.send(email,machineNumber,reservationId,pin)
+         this.emailService.send({emailAddress:email,machineNumber,reservationId,pin})
 
-         
+
   }
 
 
@@ -35,7 +35,15 @@ export default class MakeReservation implements MakeReservationUseCase{
 
 export interface EmailService{
 
-    send(emailAddress:string,machineNumber:string,reservationId:string,pin:string):void
+    send(emailRequest:EmailRequest):void
    
   }
-    
+
+export type EmailRequest={
+
+           emailAddress: string,
+            machineNumber: string, 
+            reservationId: string, 
+            pin: string
+          
+}

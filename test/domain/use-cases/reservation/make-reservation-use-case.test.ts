@@ -1,13 +1,14 @@
-import MakeReservation, { EmailService } from '../../../../src/domain/use-cases/reservation/MakeReservation';
+import MakeReservation, { EmailRequest, EmailService } from '../../../../src/domain/use-cases/reservation/MakeReservation';
 
 describe('Make Reservation Use Case',()=>{
 
      class MockEmailService implements EmailService{
 
-       send(emailAddress: string, machineNumber: string, reservationId: string, pin: string): void {
+       send(emailRequest: EmailRequest): void {
          throw new Error('Method not implemented.');
        }
 
+    
      }
 
      beforeEach(()=>{
@@ -34,18 +35,18 @@ describe('Make Reservation Use Case',()=>{
           const emailRequest={
             reservationDateTime,
             phoneNumber,
-            email
+            emailAddress:email
           }
-
-          makeReservation.execute(reservationDateTime,phoneNumber,email)
 
           jest.spyOn(mockEmailService,'send').mockImplementation(()=>
             Promise.resolve(true)
           )
 
+
+          makeReservation.execute(reservationDateTime,phoneNumber,email)
+
         
-
-
+          expect(mockEmailService.send).toBeCalledWith(emailRequest)
 
          })
       
