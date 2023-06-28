@@ -10,8 +10,7 @@ export default class CreateReservation{
   
     execute(reservationDateTime:Date,phoneNumber:string,email:string){
 
-      // get Machine number from the dd
-         
+      // get Machine number from the reservationRepository
         const machineNumber=this.reservationRepository.getFreeMachineNumber()
         const reservationId = this.generateReservationId()
         const pin = this.generatePin()
