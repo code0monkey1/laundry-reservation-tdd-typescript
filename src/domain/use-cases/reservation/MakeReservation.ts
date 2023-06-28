@@ -51,7 +51,7 @@ export interface EmailService{
 
 export interface MachineApi{
    
-  lock():boolean
+  lock(lockRequest:LockRequest):boolean
 
   unlock():void
 

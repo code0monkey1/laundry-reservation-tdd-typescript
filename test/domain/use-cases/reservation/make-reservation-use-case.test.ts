@@ -1,5 +1,5 @@
 import { ReservationRepository, ReservationRequestModel } from '../../../../src/domain/interfaces/repositories/reservation-repository';
-import MakeReservation, { EmailRequest, EmailService } from '../../../../src/domain/use-cases/reservation/MakeReservation';
+import MakeReservation, { EmailRequest, EmailService, LockRequest, MachineApi } from '../../../../src/domain/use-cases/reservation/MakeReservation';
 
 describe('Make Reservation Use Case',()=>{
 
@@ -18,6 +18,15 @@ describe('Make Reservation Use Case',()=>{
        }
 
 
+     }
+
+     class MockMachineApi implements MachineApi{
+       lock(lockRequest:LockRequest): boolean {
+         throw new Error('Method not implemented.');
+       }
+       unlock(): void {
+         throw new Error('Method not implemented.');
+       }
       
      }
 
@@ -26,13 +35,15 @@ describe('Make Reservation Use Case',()=>{
         mockEmailService = new MockEmailService()
         mockReservationRepository= new MockReservationRepository()
         
-        makeReservation = new MakeReservation(mockEmailService,mockReservationRepository)
+        makeReservation = new MakeReservation(mockEmailService,mockReservationRepository,mockMachineApi)
 
      })
 
      let mockEmailService:EmailService ;
-     let makeReservation:MakeReservation ;
+     let mockMachineApi :MachineApi;
      let mockReservationRepository:ReservationRepository;
+     
+     let makeReservation:MakeReservation ;
      
   describe('Make Reservation', () => {
     
