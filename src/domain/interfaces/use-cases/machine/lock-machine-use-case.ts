@@ -1,6 +1,6 @@
 interface LockMachineUseCase {
          
-  execute(reservationId:string, machineNumber:string, reservationDateTime:string):void
+  execute(reservationId:string, machineNumber:string, reservationDateTime:string):Promise<boolean>
         
 
 }
@@ -9,7 +9,7 @@ interface LockMachineUseCase {
 export interface MachineApi{
    
   lock(lockRequest:LockRequest):Promise<boolean>
-  
+
   unlock():void
 
 }
