@@ -16,7 +16,9 @@ export default class CreateReservation{
         const reservationId = this.generateReservationId()
         const pin = this.generatePin()
 
-      //Send lock instruction to selected machine via Machine API
+      //  Send lock instruction to selected machine via    Machine API
+
+      
         
       //Saves reservation to the DB
 
