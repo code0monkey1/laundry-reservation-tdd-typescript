@@ -123,7 +123,7 @@ describe('Make Reservation Use Case',()=>{
        
           expect(mockMachineApi.lock).toBeCalledWith(lockRequest)
 
-          
+          expect(mockMachineApi.lock).toBeCalledTimes(1)
 
           })
 
