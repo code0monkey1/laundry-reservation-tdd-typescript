@@ -24,5 +24,7 @@ export type LockRequest={
 export interface MachineDevice{
 
     lock(reservationId:string,  reservationDateTime:string,  pin:string):boolean
+    
     unlock( reservationId:string):void
+
 }
