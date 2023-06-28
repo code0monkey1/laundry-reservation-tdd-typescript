@@ -51,6 +51,9 @@ describe('Make Reservation Use Case',()=>{
           expect(arr).toStrictEqual([emailRequest])
 
          })
+
+         it.todo('should save reservation to db')
+         it.todo('should send lock instructions to selected machine')
       
    
         })
