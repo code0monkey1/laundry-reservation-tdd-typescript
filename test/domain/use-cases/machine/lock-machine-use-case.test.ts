@@ -1,5 +1,6 @@
 import { ReservationRepository, ReservationRequestModel } from '../../../../src/domain/interfaces/repositories/reservation-repository';
 import { LockMachine, MachineDevice } from '../../../../src/domain/use-cases/machine/LockMachine';
+import { LockRequest } from '../../../../src/domain/use-cases/reservation/MakeReservation';
 
 describe('Lock Machine Use Case',()=>{
       
@@ -37,7 +38,14 @@ describe('Lock Machine Use Case',()=>{
 
          //Arrange
          const lockMachine = new LockMachine(mockReservationRepository,mockMachineDevice)
-        
+          
+         const lockRequest:LockRequest={
+               reservationId: '',
+               machineNumber: '',
+               reservedDateTime: ''
+         }
+         
+         lockMachine.execute(lockRequest)
          
       })
 
