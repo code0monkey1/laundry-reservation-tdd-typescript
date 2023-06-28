@@ -1,5 +1,6 @@
 import { ReservationRepository, ReservationResponseModel } from "../../interfaces/repositories/reservation-repository";
 import { LockMachineUseCase, LockRequest } from "../../interfaces/use-cases/machine/lock-machine-use-case";
+import { getPin, getReservedDateTime } from "../../utils";
 
 export class LockMachine implements LockMachineUseCase{
       
@@ -13,13 +14,17 @@ export class LockMachine implements LockMachineUseCase{
        const reservationResponseModel= await this.reservationRepository.getById(lockRequest.reservationId)
 
       if(reservationResponseModel){
+     
+          //updating entry
+          const updatedPin=getPin()
+          const updatedDateTime = getReservedDateTime()
+        const locked:boolean= await this.machineDevice.lock(lockRequest.reservationId,updatedDateTime,updatedPin)
 
-        const locked:boolean= await this.machineDevice.lock(lockRequest.reservationId,lockRequest.reservedDateTime,reservationResponseModel.pin)
 
          if(locked){
               return true;
-      }
-     
+         }
+       
       }
        //return true if machine was unlocked and can be locked at given dateTime
 
