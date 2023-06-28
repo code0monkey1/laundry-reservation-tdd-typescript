@@ -125,7 +125,29 @@ describe('Laundry Reservation', () => {
           
 
       })
-      it.todo('sends lock instructions to selected machine')
+      it('sends lock instructions to selected machine',()=>{
+
+       const phoneNumber='123'
+       const email="v@gmail.com"
+
+        const reservationId='1'
+        const machineNumber=1
+        const reservationDateTime=new Date('01/01/2020')
+        const pin="12345"
+
+
+         
+        const createReservation = new CreateReservation(
+                                                    mockEmailService,
+                                                    mockReservationRepository,
+                                                    mockMachineApi)
+         
+        createReservation.execute(reservationDateTime,phoneNumber,email)
+  
+       
+
+
+      })
   
       
   })
