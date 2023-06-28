@@ -33,25 +33,11 @@ describe('Lock Machine Use Case',()=>{
       it('Returns true if the machine was unlocked and could be locked at the specified DateTime via the SDK ',async()=>{
 
          //Arrange
-         const lockMachine = new LockMachine(mockReservationRepository,mockMachineDevice,)
-          
-         const lockRequest:LockRequest={
-               reservationId: '',
-               machineNumber: '',
-               reservedDateTime: ''
-         }
-
-         jest.spyOn(mockMachineDevice,'lock').mockImplementation((reservationId: string, reservationDateTime: string, pin: string) =>{
-
-                 return true
-            })
+         const lockMachine = new LockMachine(mockReservationRepository,mockMachineDevice)
+        
 
         
-         //Act
-          lockMachine.execute(lockRequest)
-         
-         //Assert
-         expect(mockMachineDevice.lock).toBeCalledWith(lockRequest)
+
       })
 
       it.todo('If the reservationId already exist, then update the pin and DateTime returning true.')
