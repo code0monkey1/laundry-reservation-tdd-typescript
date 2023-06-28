@@ -1,4 +1,4 @@
-import { ReservationRepository } from "../../interfaces/repositories/reservation-repository";
+import { ReservationRepository, ReservationResponseModel } from "../../interfaces/repositories/reservation-repository";
 import { LockMachineUseCase, LockRequest } from "../../interfaces/use-cases/machine/lock-machine-use-case";
 
 export class LockMachine implements LockMachineUseCase{
@@ -10,7 +10,7 @@ export class LockMachine implements LockMachineUseCase{
 
   async execute(lockRequest: LockRequest): Promise<boolean> {
        
-       const reservationRequest= await this.reservationRepository.getById(lockRequest.reservationId)
+       const reservationRequest:ReservationResponseModel= await this.reservationRepository.getById(lockRequest.reservationId)
 
        if(!reservationRequest){
             throw new Error('Reservation not found') 
