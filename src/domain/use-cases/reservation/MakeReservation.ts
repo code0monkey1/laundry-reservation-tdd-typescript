@@ -22,6 +22,9 @@ export default class MakeReservation implements MakeReservationUseCase{
         
         await this.reservationRepo.save({machineNumber,reservationId,pin})
 
+
+        await this.machine.lock({machineNumber,reservationId,reservedDateTime:reservationDateTime})
+
   }
 
 
@@ -51,7 +54,7 @@ export interface EmailService{
 
 export interface MachineApi{
    
-  lock(lockRequest:LockRequest):boolean
+  lock(lockRequest:LockRequest):Promise<boolean>
 
   unlock():void
 

@@ -22,7 +22,7 @@ describe('Make Reservation Use Case',()=>{
 
      class MockMachineApi implements MachineApi{
       
-       lock(lockRequest:LockRequest): boolean {
+       lock(lockRequest:LockRequest): Promise<boolean> {
          throw new Error('Method not implemented.');
        }
        unlock(): void {
@@ -108,22 +108,21 @@ describe('Make Reservation Use Case',()=>{
           const phoneNumber='123'
           const email='e@email.com'
           
-    
-          const reservationRequest:ReservationRequestModel={
-            machineNumber: '1',
+          const lockRequest:LockRequest={
             reservationId: '12',
-            pin: '12345'
+            machineNumber: '1',
+            reservedDateTime: reservationDateTime
           }
 
-          jest.spyOn(mockReservationRepository,'save').mockImplementation(()=>{
-
-             Promise.resolve(true)
-          })
+          jest.spyOn(mockMachineApi,'lock').mockImplementation(()=>Promise.resolve(true)
+          )
+       
 
           await makeReservation.execute(reservationDateTime,phoneNumber,email)
- 
-          expect(mockReservationRepository.save).toBeCalledWith(reservationRequest)
-   
+       
+           
+          expect(mockMachineApi.lock).toBeCalledWith(lockRequest)
+
           })
 
         })
