@@ -44,6 +44,9 @@ describe('Laundry Reservation', () => {
            throw new Error("Method not implemented.");
          }
         
+         getLockInstructions(){
+             return this.lockInstructions
+         }
        }
   
        class MockReservationRepository implements ReservationRepository{
@@ -145,19 +148,38 @@ describe('Laundry Reservation', () => {
         const reservationDateTime=new Date('01/01/2020')
         const pin="12345"
 
+       class MockMachineApi implements MachineApi{
+
+         private lockInstructions:Omit<LockInstructions,'pin'>[]=[]
+
+         lock(reservationId: string, machineNumber: number, reservationDateTime: Date): boolean {
+           this.lockInstructions.push({
+            machineNumber,
+            reservationDateTime,
+            reservationId
+
+           })
+
+           return true
+         }
+         unlock(machineNumber: string, reservationId: string): void {
+           throw new Error("Method not implemented.");
+         }
+        
+         getLockInstructions(){
+             return this.lockInstructions
+         }
+       }
 
          
         const createReservation = new CreateReservation(
                                                     mockEmailService,
                                                     mockReservationRepository,
-                                                    mockMachineApi)
+                                                    new MockMachineApi())
          
         createReservation.execute(reservationDateTime,phoneNumber,email)
 
 
-
-  
-       
 
 
       })
