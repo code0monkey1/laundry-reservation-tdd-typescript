@@ -38,9 +38,7 @@ describe('Lock Machine Use Case',()=>{
          //Arrange
          const lockMachine = new LockMachine(mockReservationRepository,mockMachineDevice)
         
-
-        
-  
+         
       })
 
       it.todo('If the reservationId already exist, then update the pin and DateTime returning true.')
