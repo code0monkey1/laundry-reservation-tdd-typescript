@@ -153,8 +153,8 @@ describe('Make Reservation Use Case',()=>{
               return Promise.resolve(reservationResponse)
             })
             
-               await makeReservation.execute(reservationDateTime,phoneNumber,email)
-           
+            await makeReservation.execute(reservationDateTime,phoneNumber,email)
+ 
           })
 
             it('if machine is not locked , proper error should be thrown',async ()=>{
