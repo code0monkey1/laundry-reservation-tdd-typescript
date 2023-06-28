@@ -1,6 +1,6 @@
 import { ReservationRepository, ReservationRequestModel } from '../../../../src/domain/interfaces/repositories/reservation-repository';
 import { LockMachine, MachineDevice } from '../../../../src/domain/use-cases/machine/LockMachine';
-import { LockRequest } from '../../../../src/domain/use-cases/reservation/MakeReservation';
+
 describe('Lock Machine Use Case',()=>{
       
       class MockReservationRepository implements ReservationRepository{
@@ -37,7 +37,7 @@ describe('Lock Machine Use Case',()=>{
         
 
         
-
+  
       })
 
       it.todo('If the reservationId already exist, then update the pin and DateTime returning true.')
