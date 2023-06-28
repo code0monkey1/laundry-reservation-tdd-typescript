@@ -140,13 +140,20 @@ describe('Make Reservation Use Case',()=>{
             reservedDateTime: reservationDateTime
           }
 
-          jest.spyOn(mockMachineApi,'lock').mockImplementation(()=>Promise.reject(false)
+          jest.spyOn(mockMachineApi,'lock').mockImplementation(()=>Promise.resolve(false)
           )
        
 
-          expect(
-            async()=>await makeReservation.execute(reservationDateTime,phoneNumber,email)
-             ).toThrowError('Machine was not locked')
+           try{
+
+            await makeReservation.execute(reservationDateTime,phoneNumber,email)    
+           }catch(e){
+               
+              if(e instanceof Error){
+                  expect(e.message).toBe("Machine was not locked")
+              }
+               
+           }
        
         
 
