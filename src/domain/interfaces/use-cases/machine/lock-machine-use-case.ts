@@ -1,4 +1,4 @@
-interface LockMachineUseCase {
+export interface LockMachineUseCase {
          
   execute(reservationId:string, machineNumber:string, reservationDateTime:string):Promise<boolean>
         

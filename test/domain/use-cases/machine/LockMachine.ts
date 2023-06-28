@@ -1,14 +1,9 @@
-export interface MachineApi{
-   
-  lock(lockRequest:LockRequest):Promise<boolean>
+import { LockMachineUseCase } from "../../../../src/domain/interfaces/use-cases/machine/lock-machine-use-case";
 
-  unlock():void
+class LockMachine implements LockMachineUseCase{
+  
+  execute(reservationId: string, machineNumber: string, reservationDateTime: string): Promise<boolean> {
+    throw new Error("Method not implemented.");
+  }
 
-}
-
-
-export type LockRequest={
-  reservationId:string,
-  machineNumber:string,
-  reservedDateTime:string
 }
