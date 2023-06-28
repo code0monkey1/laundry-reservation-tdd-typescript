@@ -144,14 +144,17 @@ describe('Make Reservation Use Case',()=>{
             jest.spyOn(mockReservationRepository,'getById').mockImplementation(()=>{
 
               const reservationResponse:ReservationResponseModel={
-                id: '',
-                machineNumber: '',
-                reservationId: '',
-                pin: ''
+                id: '1',
+                machineNumber: '2',
+                reservationId: '3',
+                pin: '4'
               }
 
               return Promise.resolve(reservationResponse)
             })
+            
+               await makeReservation.execute(reservationDateTime,phoneNumber,email)
+           
           })
 
             it('if machine is not locked , proper error should be thrown',async ()=>{
