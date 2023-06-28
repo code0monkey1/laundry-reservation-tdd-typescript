@@ -10,13 +10,15 @@ export class LockMachine implements LockMachineUseCase{
 
   async execute(lockRequest: LockRequest): Promise<boolean> {
        
-       const reservationRequest:ReservationResponseModel= await this.reservationRepository.getById(lockRequest.reservationId)
+       const {pin}:ReservationResponseModel= await this.reservationRepository.getById(lockRequest.reservationId)
+         
+      const locked:boolean= await this.machineDevice.lock(lockRequest.reservationId,lockRequest.reservedDateTime,pin)
 
-       if(!reservationRequest){
-            throw new Error('Reservation not found') 
-       }
-
-       return true;
+      if(locked){
+             
+      }
+     
+       return false;
   }
 
 }
