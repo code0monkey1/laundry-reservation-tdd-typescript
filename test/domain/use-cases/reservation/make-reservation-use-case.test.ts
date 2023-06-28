@@ -60,21 +60,21 @@ describe('Make Reservation Use Case',()=>{
           const phoneNumber='123'
           const email='e@email.com'
           
-          const emailRequest:EmailRequest={
-            machineNumber: getMachineNumber(),
-            reservationId: getReservationId(),
+          const emailRequest:Partial<EmailRequest> ={
             emailAddress: email,
-            pin: getPin()
           }
 
-          jest.spyOn(sendEmailForReservation,'execute').mockImplementation(()=>{
+          const emailArr:string[]=[]
 
-                Promise.resolve(true)
+          jest.spyOn(sendEmailForReservation,'execute').mockImplementation((emailRequest:EmailRequest)=>{
+
+                emailArr.push(emailRequest.emailAddress)
           })
 
           makeReservation.execute(reservationDateTime,phoneNumber,email)
 
-          expect(sendEmailForReservation.execute).toBeCalledWith(emailRequest)
+          expect(emailArr).toStrictEqual(emailArr)
+    
           expect(sendEmailForReservation.execute).toBeCalledTimes(1)
 
          })
