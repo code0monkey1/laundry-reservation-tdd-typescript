@@ -32,7 +32,6 @@ export default class MakeReservation implements MakeReservationUseCase{
 
   }
 
-
   getMachineNumber(){
       return "1"
   }
