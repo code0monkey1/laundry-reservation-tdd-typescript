@@ -23,7 +23,8 @@ describe('Make Reservation Use Case',()=>{
      class MockMachineApi implements MachineApi{
       
        lock(lockRequest:LockRequest): Promise<boolean> {
-         throw new Error('Method not implemented.');
+        //  throw new Error('Method not implemented.');
+        return Promise.resolve(true)
        }
        unlock(): void {
          throw new Error('Method not implemented.');
