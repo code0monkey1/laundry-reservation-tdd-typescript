@@ -47,7 +47,7 @@ describe('Laundry Reservation', () => {
            this.reservations.push(reservation)
          }
 
-         public getReservations():Reservation[]{
+          getReservations():Reservation[]{
             return this.reservations
          }
         
@@ -91,7 +91,43 @@ describe('Laundry Reservation', () => {
   
     })
   
-      it.todo('saves reservation to db')
+      it('saves reservation to db',()=>{
+        
+          //Arrange
+         const createReservation = new CreateReservation(
+                                                    mockEmailService,
+                                                    mockReservationRepository,
+                                                    mockMachineApi)
+         
+       
+         const reservationDateTime = new Date('01/01/2020') 
+         const phoneNumber='1'  
+         const email="mail@gmail.com"                                        
+  
+       //Act
+         
+         createReservation.execute(reservationDateTime,phoneNumber,email)
+          
+         const sentMail = mockEmailService.getSentMail()
+         const reservationId="2"
+         const machineNumber=1
+         const pin="12345"
+
+         expect(sentMail).toStrictEqual([{email,machineNumber,pin,reservationId}])
+
+         const reservation:Reservation={
+          pin,
+          reservationDateTime,
+          email,
+          reservationId,
+          machineNumber
+         }
+  
+       //Assert
+         expect(mockReservationRepository.getReservations()).toStrictEqual([reservation])
+          
+
+      })
       it.todo('sends lock instructions to selected machine')
   
       

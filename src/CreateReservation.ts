@@ -25,7 +25,7 @@ export default class CreateReservation{
          }
 
          this.reservationRepository.save(reservation)
-
+ 
 
       //  Send lock instruction to selected machine via    Machine API
 
@@ -53,7 +53,8 @@ export interface EmailService{
 export interface ReservationRepository{
 
     save(reservation:Reservation):void
-    getFreeMachineNumber():number
+    getFreeMachineNumber():number,
+    getReservations():Reservation[]
 }
 
 export interface MachineApi{
