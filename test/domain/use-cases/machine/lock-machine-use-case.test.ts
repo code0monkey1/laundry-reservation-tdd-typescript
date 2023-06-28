@@ -1,9 +1,10 @@
 import { ReservationRepository, ReservationRequestModel } from '../../../../src/domain/interfaces/repositories/reservation-repository';
 import { LockMachine, MachineDevice } from '../../../../src/domain/use-cases/machine/LockMachine';
+import { LockRequest } from '../../../../src/domain/use-cases/reservation/MakeReservation';
 describe('Lock Machine Use Case',()=>{
       
       class MockReservationRepository implements ReservationRepository{
-            save(reservation: ReservationRequestModel): void {
+            save(_reservation: ReservationRequestModel): void {
                   throw new Error('Method not implemented.');
             }
             
@@ -11,10 +12,10 @@ describe('Lock Machine Use Case',()=>{
 
       class MockMachineDevice implements MachineDevice{
 
-            lock(reservationId: string, reservationDateTime: string, pin: string): boolean {
+            lock(_reservationId: string, _reservationDateTime: string, _pin: string): boolean {
                   throw new Error('Method not implemented.');
             }
-            unlock(reservationId: string): void {
+            unlock(_reservationId: string): void {
                   throw new Error('Method not implemented.');
             }
             
@@ -29,11 +30,22 @@ describe('Lock Machine Use Case',()=>{
       let mockMachineDevice :MachineDevice
       let mockReservationRepository:ReservationRepository
     
-      it('Returns true if the machine was unlocked and could be locked at the specified DateTime via the SDK ',()=>{
+      it('Returns true if the machine was unlocked and could be locked at the specified DateTime via the SDK ',async()=>{
 
          //Arrange
-         const machine = new LockMachine(mockReservationRepository,mockMachineDevice,)
+         const lockMachine = new LockMachine(mockReservationRepository,mockMachineDevice,)
+          
+         const lockRequest:LockRequest={
+               reservationId: '',
+               machineNumber: '',
+               reservedDateTime: ''
+         }
 
+         jest.spyOn(mockMachineDevice,'lock').mockImplementation(() =>{
+                 return true
+            })
+
+         lockMachine.execute(lockRequest)
          //Act
 
          //Assert
