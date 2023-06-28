@@ -1,13 +1,15 @@
-
-  export getMachineNumber(){
-      return "1"
+ import { v4 as uuid } from 'uuid';
+ 
+  export function getMachineNumber(){
+      return uuid()
   }
 
-  export getReservationId(){
-        return '12'
+  export function getReservationId(){
+       // uuid will be returned from here in the future
+        return uuid()
   }
 
 
-  export getPin(){
-      return '12345'
+  export function getPin(){
+      return uuid()
   }

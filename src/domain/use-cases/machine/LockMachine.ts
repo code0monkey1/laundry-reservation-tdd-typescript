@@ -16,7 +16,7 @@ export class LockMachine implements LockMachineUseCase{
       const locked:boolean= await this.machineDevice.lock(lockRequest.reservationId,lockRequest.reservedDateTime,pin)
 
       if(locked){
-             
+              return true;
       }
      
        return false;

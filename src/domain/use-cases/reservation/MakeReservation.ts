@@ -3,6 +3,7 @@ import { ReservationRepository } from '../../interfaces/repositories/reservation
 import { SendEmailForReservationUseCase } from '../../interfaces/use-cases/email/send-reservation-email-use-case';
 import { LockMachineUseCase } from '../../interfaces/use-cases/machine/lock-machine-use-case';
 import { MakeReservationUseCase } from '../../interfaces/use-cases/reservation/make-reservation-use-case';
+import { getMachineNumber, getPin, getReservationId } from '../../utils';
 
 
 
@@ -15,9 +16,9 @@ export default class MakeReservation implements MakeReservationUseCase{
 
   async execute(reservationDateTime: string, phoneNumber: string, email: string) {
 
-         const machineNumber=this.getMachineNumber()
-         const reservationId = this.getReservationId()
-         const pin  = this.getPin()
+         const machineNumber=getMachineNumber()
+         const reservationId = getReservationId()
+         const pin  = getPin()
           
 
         await this.sendEmailForReservation.execute({emailAddress:email,machineNumber,reservationId,pin})
@@ -35,18 +36,18 @@ export default class MakeReservation implements MakeReservationUseCase{
 
   }
 
-  getMachineNumber(){
-      return "1"
-  }
+  // getMachineNumber(){
+  //     return "1"
+  // }
 
-  getReservationId(){
-        return '12'
-  }
+  // getReservationId(){
+  //       return '12'
+  // }
 
 
-  getPin(){
-      return '12345'
-  }
+  // getPin(){
+  //     return '12345'
+  // }
 
   
 }
