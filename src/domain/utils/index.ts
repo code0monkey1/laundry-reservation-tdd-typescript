@@ -13,3 +13,7 @@
   export function getPin(){
       return uuid()
   }
+
+  export function getReservedDateTime(){
+      return '01/01/2020,01:03:12'
+  }
