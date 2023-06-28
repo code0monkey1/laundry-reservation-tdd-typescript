@@ -2,11 +2,14 @@
 import { ReservationRepository } from '../../interfaces/repositories/reservation-repository';
 import { MakeReservationUseCase } from '../../interfaces/use-cases/reservation/make-reservation-use-case';
 
+
+
 export default class MakeReservation implements MakeReservationUseCase{
 
   constructor(
     private readonly emailService:EmailService,
-    private readonly reservationRepo:ReservationRepository){}
+    private readonly reservationRepo:ReservationRepository,
+    private readonly machine:MachineApi){}
 
   async execute(reservationDateTime: string, phoneNumber: string, email: string) {
 
@@ -45,6 +48,14 @@ export interface EmailService{
     send(emailRequest:EmailRequest):void
    
   }
+
+export interface MachineApi{
+   
+  lock():boolean
+
+  unlock():void
+
+}
 
 
 
