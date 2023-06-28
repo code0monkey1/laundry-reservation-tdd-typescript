@@ -23,7 +23,12 @@ export default class MakeReservation implements MakeReservationUseCase{
         await this.reservationRepo.save({machineNumber,reservationId,pin})
 
 
-        await this.machine.lock({machineNumber,reservationId,reservedDateTime:reservationDateTime})
+        const wasLocked=await this.machine.lock({machineNumber,reservationId,reservedDateTime:reservationDateTime})
+
+
+        if(!wasLocked){
+          throw new Error("Machine was not locked")
+        }
 
   }
 

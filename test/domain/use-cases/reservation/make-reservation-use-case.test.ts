@@ -116,7 +116,7 @@ describe('Make Reservation Use Case',()=>{
             reservedDateTime: reservationDateTime
           }
 
-          jest.spyOn(mockMachineApi,'lock').mockImplementation(()=>Promise.resolve(false)
+          jest.spyOn(mockMachineApi,'lock').mockImplementation(()=>Promise.resolve(true)
           )
        
 
