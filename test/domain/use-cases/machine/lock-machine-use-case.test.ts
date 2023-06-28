@@ -48,7 +48,10 @@ describe('Lock Machine Use Case',()=>{
                reservedDateTime: ''
          }
          
-         lockMachine.execute(lockRequest)
+         //Act
+         await lockMachine.execute(lockRequest)
+
+         //Assert
          
       })
 

@@ -2,7 +2,7 @@
 export interface ReservationRepository{
 
   save(reservation:ReservationRequestModel):void
-  getUnreserved():string
+  getById(id:string):Promise<ReservationResponseModel>
 
 }
 
