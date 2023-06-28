@@ -71,13 +71,17 @@ describe('Make Reservation Use Case',()=>{
           const phoneNumber='123'
           const email='e@email.com'
           
-      
-           
+    
           const reservationRequest:ReservationRequestModel={
             machineNumber: '1',
             reservationId: '12',
             pin: '12345'
           }
+
+          jest.spyOn(mockReservationRepository,'save').mockImplementation(()=>{
+
+             Promise.resolve(true)
+          })
 
           await makeReservation.execute(reservationDateTime,phoneNumber,email)
  
