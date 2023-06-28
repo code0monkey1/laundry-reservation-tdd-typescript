@@ -4,6 +4,6 @@ export type Reservation={
   reservationDateTime:Date,
   email:string,
   reservationId:string,
-  machineNumber:string
+  machineNumber:number
   
 }

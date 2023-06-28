@@ -15,11 +15,21 @@ export default class CreateReservation{
         const reservationId = this.generateReservationId()
         const pin = this.generatePin()
 
+        //Saves reservation to the DB
+         const reservation:Reservation={
+           pin,
+           reservationDateTime,
+           email,
+           reservationId,
+           machineNumber
+         }
+
+         this.reservationRepository.save(reservation)
+
+
       //  Send lock instruction to selected machine via    Machine API
 
-      
         
-      //Saves reservation to the DB
 
       //Sends confirmation email with a machine number, reservation ID and a 5 digit PIN
          this.emailService.send(email,machineNumber,reservationId,pin)
