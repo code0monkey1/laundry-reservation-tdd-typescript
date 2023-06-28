@@ -31,11 +31,19 @@ describe('Make Reservation Use Case',()=>{
           const phoneNumber='123'
           const email='e@email.com'
           
+          const emailRequest={
+            reservationDateTime,
+            phoneNumber,
+            email
+          }
+
           makeReservation.execute(reservationDateTime,phoneNumber,email)
 
           jest.spyOn(mockEmailService,'send').mockImplementation(()=>
             Promise.resolve(true)
           )
+
+        
 
 
 
