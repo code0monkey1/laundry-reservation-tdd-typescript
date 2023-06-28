@@ -6,8 +6,16 @@ import { getMachineNumber, getReservationId, getReservedDateTime } from '../../.
 describe('Lock Machine Use Case',()=>{
       
       class MockReservationRepository implements ReservationRepository{
+            
             getById(id: string): Promise<ReservationResponseModel> {
-                  throw new Error('Method not implemented.');
+                
+              const reservationModel:ReservationResponseModel={
+                       id: '',
+                       machineNumber: '',
+                       reservationId: '',
+                       pin: ''
+                 }  
+                  return Promise.resolve(reservationModel)
             }
             save(_reservation: ReservationRequestModel): void {
                   throw new Error('Method not implemented.');
@@ -18,7 +26,7 @@ describe('Lock Machine Use Case',()=>{
       class MockMachineDevice implements MachineDevice{
 
             lock(_reservationId: string, _reservationDateTime: string, _pin: string): boolean {
-                  throw new Error('Method not implemented.');
+                  return true
             }
             unlock(_reservationId: string): void {
                   throw new Error('Method not implemented.');
@@ -48,11 +56,14 @@ describe('Lock Machine Use Case',()=>{
                machineNumber: getMachineNumber(),
                reservedDateTime: getReservedDateTime()
          }
-         
+       
          //Act
-         await lockMachine.execute(lockRequest)
+        const result= await lockMachine.execute(lockRequest)
+
+
 
          //Assert
+        expect(result).toBeTruthy()
          
       })
 

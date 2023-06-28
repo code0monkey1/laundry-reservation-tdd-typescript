@@ -36,6 +36,8 @@ describe('Make Reservation Use Case',()=>{
 
 
      beforeEach(()=>{
+        
+       jest.clearAllMocks()
 
         sendEmailForReservation = new MockSendEmailForReservation()
         mockReservationRepository= new MockReservationRepository()
