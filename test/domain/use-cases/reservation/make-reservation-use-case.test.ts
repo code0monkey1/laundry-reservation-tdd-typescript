@@ -133,6 +133,18 @@ describe('Make Reservation Use Case',()=>{
 
           })
 
+          it.todo('If the reservationId already exist, then update the pin and DateTime returning true.',()=>{
+                
+               
+            const reservationDateTime='01/01/2020, 01:01:12'
+            const phoneNumber='123'
+            const email='e@email.com'
+        
+            
+
+            expect(lockMachine.execute).toBeCalledTimes(1)
+          })
+
             it('if machine is not locked , proper error should be thrown',async ()=>{
           
            const reservationDateTime='01/01/2020, 01:01:12'
