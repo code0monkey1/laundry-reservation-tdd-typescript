@@ -3,16 +3,10 @@ import MakeReservation, { EmailRequest, EmailService } from '../../../../src/dom
 describe('Make Reservation Use Case',()=>{
 
      class MockEmailService implements EmailService{
-        private arr : EmailRequest[]=[]
 
-         send(emailRequest:EmailRequest){
-            this.arr.push(emailRequest)
-         }
-
-         getArr(){
-          return this.arr
-         }
-
+       send(emailRequest: EmailRequest): void {
+         throw new Error('Method not implemented.');
+       }
 
      }
 
@@ -44,17 +38,17 @@ describe('Make Reservation Use Case',()=>{
             pin: '12345'
           }
            
-          //  const arr : EmailRequest[]=[]
+           const arr : EmailRequest[]=[]
 
-          // jest.spyOn(mockEmailService,'send').mockImplementation((emailRequest:EmailRequest)=>
-          //   arr.push(emailRequest)
-          // )
+          jest.spyOn(mockEmailService,'send').mockImplementation((emailRequest:EmailRequest)=>
+            arr.push(emailRequest)
+          )
 
           makeReservation.execute(reservationDateTime,phoneNumber,email)
 
           expect(mockEmailService.send).toBeCalledWith(emailRequest)
 
-          expect(mockEmailService).toStrictEqual([emailRequest])
+          expect(arr).toStrictEqual([emailRequest])
 
          })
       
