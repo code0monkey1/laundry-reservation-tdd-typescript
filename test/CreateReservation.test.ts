@@ -47,7 +47,7 @@ describe('Laundry Reservation', () => {
            this.reservations.push(reservation)
          }
 
-         getReservations():Reservation[]{
+         public getReservations():Reservation[]{
             return this.reservations
          }
         
