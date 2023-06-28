@@ -12,9 +12,7 @@ export class LockMachine implements LockMachineUseCase{
     throw new Error("Method not implemented.");
   }
 
-  
 }
-
 
 export interface MachineDevice{
 
