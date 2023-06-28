@@ -7,11 +7,12 @@ describe('Laundry Reservation', () => {
   
        class MockEmailService implements EmailService{
         
-         private mailSent:{machineNumber:number,reservationId:string,pin:string}[]=[]
+         private mailSent:{email:string,machineNumber:number,reservationId:string,pin:string}[]=[]
          
-         send(machineNumber: number, reservationId: string, pin: string): void {
+         send(email:string,machineNumber: number, reservationId: string, pin: string): void {
          
           this.mailSent.push( {
+              email,
               machineNumber,
               reservationId,
               pin

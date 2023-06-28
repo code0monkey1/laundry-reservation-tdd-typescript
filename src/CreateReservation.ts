@@ -2,8 +2,9 @@ import { Reservation } from "./types/Reservation"
 
 export default class CreateReservation{
 
-  constructor(private readonly emailService:EmailService,
-    private readonly reservationRepository :ReservationRepository,
+  constructor(
+    private readonly emailService:EmailService,
+    private readonly reservationRepository:ReservationRepository,
     private readonly machineApi :MachineApi,
     ){}
   
@@ -20,7 +21,7 @@ export default class CreateReservation{
       //Saves reservation to the DB
 
       //Sends confirmation email with a machine number, reservation ID and a 5 digit PIN
-         this.emailService.send(freeMachineNumber,reservationId,pin)
+         this.emailService.send(email,freeMachineNumber,reservationId,pin)
     }
 
     private generateReservationId(){
@@ -35,7 +36,7 @@ export default class CreateReservation{
 }
 
 export interface EmailService{
-   send(machineNumber:number,reservationId:string,pin:string):void
+   send(email:string,machineNumber:number,reservationId:string,pin:string):void
 }
 
 export interface ReservationRepository{
