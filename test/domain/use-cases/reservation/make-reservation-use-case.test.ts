@@ -87,20 +87,21 @@ describe('Make Reservation Use Case',()=>{
           const email='e@email.com'
           
     
-          const reservationRequest:ReservationRequestModel={
-            machineNumber: '1',
-            reservationId: '12',
-            pin: '12345'
-          }
+          const reservations:ReservationResponseModel[]=[]
 
-          jest.spyOn(mockReservationRepository,'save').mockImplementation(()=>{
+          jest.spyOn(mockReservationRepository,'save').mockImplementation((reservation:ReservationRequestModel)=>{
 
-             Promise.resolve(true)
+             reservations.push({id:"5cba8579-bbac-5410-afc5-bce80e571cea",...reservation})
           })
 
           await makeReservation.execute(reservationDateTime,phoneNumber,email)
  
-          expect(mockReservationRepository.save).toBeCalledWith(reservationRequest)
+          expect(reservations).toHaveLength(1)
+
+          expect(reservations[0].machineNumber).not.toBeNull()
+          expect(reservations[0].pin).not.toBeNull()
+          expect(reservations[0].machineNumber).not.toBeNull()
+      
 
          })
          
@@ -110,14 +111,18 @@ describe('Make Reservation Use Case',()=>{
           const phoneNumber='123'
           const email='e@email.com'
           
-          const lockRequest:LockRequest={
-            reservationId: '12',
-            machineNumber: '1',
+          const lockRequest:Partial<LockRequest> ={
             reservedDateTime: reservationDateTime
           }
+            
+          const dateTime:string[]=[]
 
-          jest.spyOn(lockMachine,'execute').mockImplementation(()=>Promise.resolve(true)
-          )
+          jest.spyOn(lockMachine,'execute').mockImplementation(async(lockRequest:LockRequest)=>{
+
+            dateTime.push(lockRequest.reservedDateTime)
+
+            return true;
+          })
        
 
           await makeReservation.execute(reservationDateTime,phoneNumber,email)
