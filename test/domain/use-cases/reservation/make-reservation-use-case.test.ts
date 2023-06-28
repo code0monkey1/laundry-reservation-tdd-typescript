@@ -1,4 +1,4 @@
-import { ReservationRepository, ReservationRequestModel } from '../../../../src/domain/interfaces/repositories/reservation-repository';
+import { ReservationRepository, ReservationRequestModel, ReservationResponseModel } from '../../../../src/domain/interfaces/repositories/reservation-repository';
 import { RequestReservation, SendEmailForReservationUseCase } from '../../../../src/domain/interfaces/use-cases/email/send-reservation-email-use-case';
 import { LockMachineUseCase, LockRequest } from '../../../../src/domain/interfaces/use-cases/machine/lock-machine-use-case';
 import MakeReservation, { EmailRequest, EmailService, MachineApi } from '../../../../src/domain/use-cases/reservation/MakeReservation';
@@ -14,6 +14,9 @@ describe('Make Reservation Use Case',()=>{
     }
 
      class MockReservationRepository implements ReservationRepository{
+      getById(id: string): Promise<ReservationResponseModel> {
+        throw new Error('Method not implemented.');
+      }
 
       async  save(reservation: ReservationRequestModel): Promise<void> {
         //  throw new Error('Method not implemented.');

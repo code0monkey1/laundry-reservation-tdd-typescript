@@ -8,8 +8,15 @@ export class LockMachine implements LockMachineUseCase{
     private readonly machineDevice:MachineDevice){}
     
 
-  execute(lockRequest: LockRequest): Promise<boolean> {
-    throw new Error("Method not implemented.");
+  async execute(lockRequest: LockRequest): Promise<boolean> {
+       
+       const reservationRequest= await this.reservationRepository.getById(lockRequest.reservationId)
+
+       if(!reservationRequest){
+            throw new Error('Reservation not found') 
+       }
+
+       return true;
   }
 
 }

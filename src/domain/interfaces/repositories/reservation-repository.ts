@@ -2,6 +2,7 @@
 export interface ReservationRepository{
 
   save(reservation:ReservationRequestModel):void
+  getUnreserved():string
 
 }
 

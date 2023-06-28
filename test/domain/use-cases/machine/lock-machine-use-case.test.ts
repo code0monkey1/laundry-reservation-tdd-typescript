@@ -1,10 +1,13 @@
-import { ReservationRepository, ReservationRequestModel } from '../../../../src/domain/interfaces/repositories/reservation-repository';
+import { ReservationRepository, ReservationRequestModel, ReservationResponseModel } from '../../../../src/domain/interfaces/repositories/reservation-repository';
 import { LockMachine, MachineDevice } from '../../../../src/domain/use-cases/machine/LockMachine';
 import { LockRequest } from '../../../../src/domain/use-cases/reservation/MakeReservation';
 
 describe('Lock Machine Use Case',()=>{
       
       class MockReservationRepository implements ReservationRepository{
+            getById(id: string): Promise<ReservationResponseModel> {
+                  throw new Error('Method not implemented.');
+            }
             save(_reservation: ReservationRequestModel): void {
                   throw new Error('Method not implemented.');
             }
