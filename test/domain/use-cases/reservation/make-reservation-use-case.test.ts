@@ -1,5 +1,5 @@
 import { ReservationRepository, ReservationRequestModel } from '../../../../src/domain/interfaces/repositories/reservation-repository';
-import { RequestReservation, SendEmailForReservationUseCase } from '../../../../src/domain/interfaces/use-cases/email/send-email-for-reservation-use-case';
+import { RequestReservation, SendEmailForReservationUseCase } from '../../../../src/domain/interfaces/use-cases/email/send-reservation-email-use-case';
 import { LockMachineUseCase, LockRequest } from '../../../../src/domain/interfaces/use-cases/machine/lock-machine-use-case';
 import MakeReservation, { EmailRequest, EmailService, MachineApi } from '../../../../src/domain/use-cases/reservation/MakeReservation';
 

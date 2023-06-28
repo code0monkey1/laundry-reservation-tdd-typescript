@@ -1,6 +1,6 @@
 
 import { ReservationRepository } from '../../interfaces/repositories/reservation-repository';
-import { SendEmailForReservationUseCase } from '../../interfaces/use-cases/email/send-email-for-reservation-use-case';
+import { SendEmailForReservationUseCase } from '../../interfaces/use-cases/email/send-reservation-email-use-case';
 import { LockMachineUseCase } from '../../interfaces/use-cases/machine/lock-machine-use-case';
 import { MakeReservationUseCase } from '../../interfaces/use-cases/reservation/make-reservation-use-case';
 
