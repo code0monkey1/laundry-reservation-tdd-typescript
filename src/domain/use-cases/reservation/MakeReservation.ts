@@ -13,9 +13,9 @@ export default class MakeReservation implements MakeReservationUseCase{
          const pin  = this.getPin()
           
 
-         this.emailService.send({emailAddress:email,machineNumber,reservationId,pin})
+        await this.emailService.send({emailAddress:email,machineNumber,reservationId,pin})
         
-         this.reservationRepo.save({machineNumber,reservationId,pin})
+        await this.reservationRepo.save({machineNumber,reservationId,pin})
 
   }
 
