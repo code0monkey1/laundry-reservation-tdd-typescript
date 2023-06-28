@@ -37,11 +37,18 @@ describe('Laundry Reservation', () => {
        }
   
        class MockReservationRepository implements ReservationRepository{
+
+         private reservations:Reservation[] =[]
+
          getFreeMachineNumber(): number {
            return 1
          }
          save(reservation: Reservation): void {
-           throw new Error("Method not implemented.");
+           this.reservations.push(reservation)
+         }
+
+         getReservations():Reservation[]{
+            return this.reservations
          }
         
        }
