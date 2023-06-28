@@ -25,7 +25,6 @@ export default class MakeReservation implements MakeReservationUseCase{
 
         const wasLocked=await this.machine.lock({machineNumber,reservationId,reservedDateTime:reservationDateTime})
         
-        console.log(wasLocked)
 
         if(!wasLocked){
          throw new Error("Machine was not locked")
