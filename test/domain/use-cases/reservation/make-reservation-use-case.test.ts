@@ -127,9 +127,7 @@ describe('Make Reservation Use Case',()=>{
 
           await makeReservation.execute(reservationDateTime,phoneNumber,email)
        
-          expect(lockMachine.execute).toBeCalledWith(lockRequest)
-
-          expect(lockMachine.execute).toBeCalledTimes(1)
+          expect(dateTime).toStrictEqual([reservationDateTime])
 
           })
 
