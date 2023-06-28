@@ -67,3 +67,9 @@ export type EmailRequest={
             pin: string
           
 }
+
+export type LockRequest={
+  reservationId:string,
+  machineNumber:string,
+  reservedDateTime:string
+}
