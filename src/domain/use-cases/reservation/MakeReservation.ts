@@ -2,10 +2,31 @@
 import { MakeReservationUseCase } from '../../interfaces/use-cases/reservation/make-reservation-use-case';
 export default class MakeReservation implements MakeReservationUseCase{
 
-  constructor(emailService:EmailService){}
+  constructor(private readonly emailService:EmailService){}
 
-  execute(reservationDateTime: string, phoneNumber: string, email: string): void {
-    throw new Error('Method not implemented.');
+  async execute(reservationDateTime: string, phoneNumber: string, email: string) {
+
+         const machineNumber=this.getMachineNumber()
+         const reservationId = this.getReservationId()
+         const pin  = this.getPin()
+
+         this.emailService.send(email,machineNumber,reservationId,pin)
+
+         
+  }
+
+
+  getMachineNumber(){
+      return "1"
+  }
+
+  getReservationId(){
+        return '12'
+  }
+
+
+  getPin(){
+      return '12345'
   }
 
 
