@@ -7,7 +7,7 @@ describe('Lock Machine Use Case',()=>{
       
       class MockReservationRepository implements ReservationRepository{
             
-            getById(id: string): Promise<ReservationResponseModel> {
+            getById(id: string): Promise<ReservationResponseModel>|null {
                 
               const reservationModel:ReservationResponseModel={
                        id: '',
@@ -60,15 +60,34 @@ describe('Lock Machine Use Case',()=>{
          //Act
         const result= await lockMachine.execute(lockRequest)
 
-
-
          //Assert
         expect(result).toBeTruthy()
          
       })
 
-      it.todo('If the reservationId already exist, then update the pin and DateTime returning true.')
+      it.todo('In all other cases return false',async()=>{
+   
+                //Arrange
+         const lockMachine = new LockMachine(mockReservationRepository,mockMachineDevice)
+          
+         const lockRequest:LockRequest={
+               reservationId: getReservationId(),
+               machineNumber: getMachineNumber(),
+               reservedDateTime: getReservedDateTime()
+         }
+          
+         jest.spyOn(mockReservationRepository,'getById').mockImplementation(()=>{
+           
+             return null
+            
+         })
+         //Act
+        const result= await lockMachine.execute(lockRequest)
 
-      it.todo('In all other cases return false')
+         //Assert
+        expect(result).toBeTruthy()
+         
+
+      })
      
 })
