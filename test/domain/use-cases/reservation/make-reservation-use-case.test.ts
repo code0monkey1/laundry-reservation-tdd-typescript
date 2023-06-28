@@ -145,21 +145,17 @@ describe('Make Reservation Use Case',()=>{
        
 
            try{
-
             await makeReservation.execute(reservationDateTime,phoneNumber,email)    
            }catch(e){
-               
-              if(e instanceof Error){
+          
+              if(e instanceof Error)
                   expect(e.message).toBe("Machine was not locked")
-              }
-               
+              
            }
-       
-        
 
+            expect(mockMachineApi.lock).toBeCalledWith(lockRequest)
+            expect(mockMachineApi.lock).toBeCalledTimes(1)
         
-        
-
           })
 
 
