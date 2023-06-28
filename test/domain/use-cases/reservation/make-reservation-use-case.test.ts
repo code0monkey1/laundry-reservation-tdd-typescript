@@ -33,6 +33,12 @@ describe('Make Reservation Use Case',()=>{
           
           makeReservation.execute(reservationDateTime,phoneNumber,email)
 
+          jest.spyOn(mockEmailService,'send').mockImplementation(()=>{
+            Promise.resolve(true)
+          })
+
+          
+
          })
       
    
