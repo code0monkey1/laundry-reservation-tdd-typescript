@@ -5,7 +5,7 @@ describe('Make Reservation Use Case',()=>{
 
      class MockEmailService implements EmailService{
 
-       send(emailRequest: EmailRequest): void {
+       async send(emailRequest: EmailRequest): Promise<void> {
         //  throw new Error('Method not implemented.');
        }
 
@@ -13,7 +13,7 @@ describe('Make Reservation Use Case',()=>{
 
      class MockReservationRepository implements ReservationRepository{
 
-       save(reservation: ReservationRequestModel): void {
+      async  save(reservation: ReservationRequestModel): Promise<void> {
         //  throw new Error('Method not implemented.');
        }
 
@@ -22,9 +22,9 @@ describe('Make Reservation Use Case',()=>{
 
      class MockMachineApi implements MachineApi{
       
-       lock(lockRequest:LockRequest): Promise<boolean> {
+       async lock(lockRequest:LockRequest): Promise<boolean> {
         //  throw new Error('Method not implemented.');
-        return Promise.resolve(true)
+         return Promise.resolve(true)
        }
        unlock(): void {
          throw new Error('Method not implemented.');
@@ -121,8 +121,9 @@ describe('Make Reservation Use Case',()=>{
 
           await makeReservation.execute(reservationDateTime,phoneNumber,email)
        
-           
           expect(mockMachineApi.lock).toBeCalledWith(lockRequest)
+
+          
 
           })
 
