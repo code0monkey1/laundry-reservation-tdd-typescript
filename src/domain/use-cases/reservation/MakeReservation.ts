@@ -28,7 +28,7 @@ export default class MakeReservation implements MakeReservationUseCase{
         console.log(wasLocked)
 
         if(!wasLocked){
-          throw new Error("Machine was not locked")
+         throw new Error("Machine was not locked")
         }
 
   }

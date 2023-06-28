@@ -144,7 +144,9 @@ describe('Make Reservation Use Case',()=>{
           )
        
 
-          expect(async()=>await makeReservation.execute(reservationDateTime,phoneNumber,email) ).toThrowError('Machine was not locked')
+          expect(
+            async()=>await makeReservation.execute(reservationDateTime,phoneNumber,email)
+             ).toThrowError('Machine was not locked')
        
         
 
