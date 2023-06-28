@@ -46,13 +46,36 @@ describe('Make Reservation Use Case',()=>{
 
           makeReservation.execute(reservationDateTime,phoneNumber,email)
 
-          expect(mockEmailService.send).toBeCalledWith(emailRequest)
+          expect(arr).toStrictEqual([emailRequest])
+
+         })
+
+         it.todo('should save reservation to db',()=>{
+        
+           
+          const reservationDateTime='01/01/2020, 01:01:12'
+          const phoneNumber='123'
+          const email='e@email.com'
+          
+          const emailRequest:EmailRequest={
+            machineNumber: '1',
+            reservationId: '12',
+            emailAddress: email,
+            pin: '12345'
+          }
+           
+           const arr : EmailRequest[]=[]
+
+          jest.spyOn(mockEmailService,'send').mockImplementation((emailRequest:EmailRequest)=>
+            arr.push(emailRequest)
+          )
+
+          makeReservation.execute(reservationDateTime,phoneNumber,email)
 
           expect(arr).toStrictEqual([emailRequest])
 
          })
 
-         it.todo('should save reservation to db')
          it.todo('should send lock instructions to selected machine')
       
    
