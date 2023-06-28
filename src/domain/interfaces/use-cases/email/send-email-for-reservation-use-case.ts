@@ -1,11 +1,11 @@
 interface SendEmailForReservationUseCase{
     
-  send(emailRequest:RequestForReservation):void
+  send(emailRequest:RequestReservation):void
 
 }
 
 
-export type RequestForReservation={
+export type RequestReservation={
 
             emailAddress: string,
             machineNumber: string, 
