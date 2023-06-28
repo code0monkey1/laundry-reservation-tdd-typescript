@@ -103,7 +103,7 @@ describe('Make Reservation Use Case',()=>{
           expect(mockReservationRepository.save).toBeCalledWith(reservationRequest)
 
          })
-
+         
          it('should send lock instructions to selected machine',async ()=>{
           
            const reservationDateTime='01/01/2020, 01:01:12'
@@ -116,7 +116,7 @@ describe('Make Reservation Use Case',()=>{
             reservedDateTime: reservationDateTime
           }
 
-          jest.spyOn(mockMachineApi,'lock').mockImplementation(()=>Promise.resolve(true)
+          jest.spyOn(mockMachineApi,'lock').mockImplementation(()=>Promise.resolve(false)
           )
        
 
