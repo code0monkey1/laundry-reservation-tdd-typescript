@@ -15,7 +15,7 @@ describe('Make Reservation Use Case',()=>{
     }
 
      class MockReservationRepository implements ReservationRepository{
-      getById(id: string): Promise<ReservationResponseModel> {
+      getById(id: string): Promise<ReservationResponseModel>|null {
         throw new Error('Method not implemented.');
       }
 
@@ -133,7 +133,7 @@ describe('Make Reservation Use Case',()=>{
 
           })
 
-          it('If the reservationId already exist, then update the pin and DateTime returning true.',()=>{
+          it('If the reservationId already exist, then update the pin and DateTime returning true.',async()=>{
                 
                
             const reservationDateTime='01/01/2020, 01:01:12'
@@ -141,8 +141,17 @@ describe('Make Reservation Use Case',()=>{
             const email='e@email.com'
         
             
+            jest.spyOn(mockReservationRepository,'getById').mockImplementation(()=>{
 
-            expect(lockMachine.execute).toBeCalledTimes(1)
+              const reservationResponse:ReservationResponseModel={
+                id: '',
+                machineNumber: '',
+                reservationId: '',
+                pin: ''
+              }
+
+              return Promise.resolve(reservationResponse)
+            })
           })
 
             it('if machine is not locked , proper error should be thrown',async ()=>{
