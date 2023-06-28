@@ -37,7 +37,7 @@ describe('Make Reservation Use Case',()=>{
             Promise.resolve(true)
           })
 
-          
+          expect(mockEmailService.send).toBeCalledWith(reservationDateTime,phoneNumber,email)
 
          })
       
