@@ -4,16 +4,7 @@ import { LockMachineUseCase, LockRequest } from '../../../../src/domain/interfac
 import MakeReservation, { EmailRequest, EmailService, MachineApi } from '../../../../src/domain/use-cases/reservation/MakeReservation';
 
 describe('Make Reservation Use Case',()=>{
-
-    //  class MockEmailService implements EmailService{
-
-    //    async send(emailRequest: EmailRequest): Promise<void> {
-    //     //  throw new Error('Method not implemented.');
-     
-    //    }
-
-    //  }
-
+  
     class MockSendEmailForReservation implements SendEmailForReservationUseCase{
       execute(emailRequest: RequestReservation): void {
         // throw new Error('Method not implemented.');
@@ -40,7 +31,6 @@ describe('Make Reservation Use Case',()=>{
     }
 
 
-
      beforeEach(()=>{
 
         sendEmailForReservation = new MockSendEmailForReservation()
@@ -56,8 +46,6 @@ describe('Make Reservation Use Case',()=>{
      let mockReservationRepository:ReservationRepository;
      
      let makeReservation:MakeReservation ;
-     
-  describe('Make Reservation', () => {
     
 
          
@@ -165,9 +153,6 @@ describe('Make Reservation Use Case',()=>{
             expect(lockMachine.execute).toBeCalledTimes(1)
         
           })
-
-
-        })
   
 
 })
