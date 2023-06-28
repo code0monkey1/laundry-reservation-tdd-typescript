@@ -1,5 +1,6 @@
 import { ReservationRepository, ReservationRequestModel } from '../../../../src/domain/interfaces/repositories/reservation-repository';
-import MakeReservation, { EmailRequest, EmailService, LockRequest, MachineApi } from '../../../../src/domain/use-cases/reservation/MakeReservation';
+import { LockMachineUseCase, LockRequest } from '../../../../src/domain/interfaces/use-cases/machine/lock-machine-use-case';
+import MakeReservation, { EmailRequest, EmailService, MachineApi } from '../../../../src/domain/use-cases/reservation/MakeReservation';
 
 describe('Make Reservation Use Case',()=>{
 
@@ -21,30 +22,39 @@ describe('Make Reservation Use Case',()=>{
 
      }
 
-     class MockMachineApi implements MachineApi{
+    //  class MockMachineApi implements MachineApi{
       
-       async lock(lockRequest:LockRequest): Promise<boolean> {
-        //  throw new Error('Method not implemented.');
-         return Promise.resolve(true)
-       }
-       unlock(): Promise<void> {
-         throw new Error('Method not implemented.');
-       }
+    //    async lock(lockRequest:LockRequest): Promise<boolean> {
+    //     //  throw new Error('Method not implemented.');
+    //      return Promise.resolve(true)
+    //    }
+    //    unlock(): Promise<void> {
+    //      throw new Error('Method not implemented.');
+    //    }
       
-     }
+    //  }
+
+    class MockLockMachine implements LockMachineUseCase{
+      execute(lockRequest: LockRequest): Promise<boolean> {
+        throw new Error('Method not implemented.');
+      }
+      
+    }
+
+
 
      beforeEach(()=>{
 
         mockEmailService = new MockEmailService()
         mockReservationRepository= new MockReservationRepository()
-        mockMachineApi = new MockMachineApi()
+        lockMachine = new MockLockMachine()
         
-        makeReservation = new MakeReservation(mockEmailService,mockReservationRepository,mockMachineApi)
+        makeReservation = new MakeReservation(mockEmailService,mockReservationRepository,lockMachine)
 
      })
 
      let mockEmailService:EmailService ;
-     let mockMachineApi :MachineApi;
+     let lockMachine :LockMachineUseCase;
      let mockReservationRepository:ReservationRepository;
      
      let makeReservation:MakeReservation ;
@@ -116,15 +126,15 @@ describe('Make Reservation Use Case',()=>{
             reservedDateTime: reservationDateTime
           }
 
-          jest.spyOn(mockMachineApi,'lock').mockImplementation(()=>Promise.resolve(true)
+          jest.spyOn(lockMachine,'execute').mockImplementation(()=>Promise.resolve(true)
           )
        
 
           await makeReservation.execute(reservationDateTime,phoneNumber,email)
        
-          expect(mockMachineApi.lock).toBeCalledWith(lockRequest)
+          expect(lockMachine.execute).toBeCalledWith(lockRequest)
 
-          expect(mockMachineApi.lock).toBeCalledTimes(1)
+          expect(lockMachine.execute).toBeCalledTimes(1)
 
           })
 
@@ -140,7 +150,7 @@ describe('Make Reservation Use Case',()=>{
             reservedDateTime: reservationDateTime
           }
 
-          jest.spyOn(mockMachineApi,'lock').mockImplementation(()=>Promise.resolve(false)
+          jest.spyOn(lockMachine,'execute').mockImplementation(()=>Promise.resolve(false)
           )
        
 
@@ -153,8 +163,8 @@ describe('Make Reservation Use Case',()=>{
               
            }
 
-            expect(mockMachineApi.lock).toBeCalledWith(lockRequest)
-            expect(mockMachineApi.lock).toBeCalledTimes(1)
+            expect(lockMachine.execute).toBeCalledWith(lockRequest)
+            expect(lockMachine.execute).toBeCalledTimes(1)
         
           })
 
