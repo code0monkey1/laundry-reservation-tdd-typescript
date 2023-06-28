@@ -7,6 +7,7 @@ describe('Make Reservation Use Case',()=>{
 
        async send(emailRequest: EmailRequest): Promise<void> {
         //  throw new Error('Method not implemented.');
+     
        }
 
      }
@@ -26,7 +27,7 @@ describe('Make Reservation Use Case',()=>{
         //  throw new Error('Method not implemented.');
          return Promise.resolve(true)
        }
-       unlock(): void {
+       unlock(): Promise<void> {
          throw new Error('Method not implemented.');
        }
       
@@ -68,9 +69,10 @@ describe('Make Reservation Use Case',()=>{
            
            const arr : EmailRequest[]=[]
 
-          jest.spyOn(mockEmailService,'send').mockImplementation((emailRequest:EmailRequest)=>
-            arr.push(emailRequest)
-          )
+          jest.spyOn(mockEmailService,'send').mockImplementation(()=>{
+
+             arr.push(emailRequest)
+          })
 
           makeReservation.execute(reservationDateTime,phoneNumber,email)
 

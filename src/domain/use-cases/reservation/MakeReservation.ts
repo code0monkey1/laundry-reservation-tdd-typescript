@@ -56,7 +56,7 @@ export interface MachineApi{
    
   lock(lockRequest:LockRequest):Promise<boolean>
 
-  unlock():void
+  unlock():Promise<void>
 
 }
 
