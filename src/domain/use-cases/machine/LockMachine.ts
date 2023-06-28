@@ -3,7 +3,9 @@ import { LockMachineUseCase, LockRequest } from "../../interfaces/use-cases/mach
 
 export class LockMachine implements LockMachineUseCase{
       
-  constructor(private readonly reservationRepository:ReservationRepository){}
+  constructor(
+    private readonly reservationRepository:ReservationRepository,
+    private readonly machineDevice:MachineDevice){}
     
 
   execute(lockRequest: LockRequest): Promise<boolean> {
