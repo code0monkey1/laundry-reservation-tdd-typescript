@@ -1,10 +1,10 @@
-import { LockMachineUseCase, LockRequest } from "../../../../src/domain/interfaces/use-cases/machine/lock-machine-use-case";
+describe('Lock Machine Use Case',()=>{
 
-class LockMachine implements LockMachineUseCase{
- 
-  execute(lockRequest: LockRequest): Promise<boolean> {
-    throw new Error("Method not implemented.");
-  }
+    
+      it.todo('Returns true if the machine was unlocked and could be locked at the specified DateTime via the SDK ')
 
+      it.todo('If the reservationId already exist, then update the pin and DateTime returning true.')
 
-}
+      it.todo('In all other cases return false')
+     
+})
