@@ -12,7 +12,7 @@ export default class CreateReservation{
 
       // get Machine number from the dd
          
-        const freeMachineNumber=this.reservationRepository.getFreeMachineNumber()
+        const machineNumber=this.reservationRepository.getFreeMachineNumber()
         const reservationId = this.generateReservationId()
         const pin = this.generatePin()
 
@@ -21,7 +21,7 @@ export default class CreateReservation{
       //Saves reservation to the DB
 
       //Sends confirmation email with a machine number, reservation ID and a 5 digit PIN
-         this.emailService.send(email,freeMachineNumber,reservationId,pin)
+         this.emailService.send(email,machineNumber,reservationId,pin)
     }
 
     private generateReservationId(){

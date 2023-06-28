@@ -78,7 +78,7 @@ describe('Laundry Reservation', () => {
          createReservation.execute(reservationDateTime,phoneNumber,email)
           
          const sentMail = mockEmailService.getSentMail()
-         expect(sentMail).toStrictEqual([{machineNumber:1,pin:"12345",reservationId:"2",}])
+         expect(sentMail).toStrictEqual([{email,machineNumber:1,pin:"12345",reservationId:"2",}])
   
        //Assert
   
