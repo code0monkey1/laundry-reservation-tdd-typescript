@@ -6,7 +6,7 @@ describe('Make Reservation Use Case',()=>{
      class MockEmailService implements EmailService{
 
        send(emailRequest: EmailRequest): void {
-         throw new Error('Method not implemented.');
+        //  throw new Error('Method not implemented.');
        }
 
      }
@@ -14,7 +14,7 @@ describe('Make Reservation Use Case',()=>{
      class MockReservationRepository implements ReservationRepository{
 
        save(reservation: ReservationRequestModel): void {
-         throw new Error('Method not implemented.');
+        //  throw new Error('Method not implemented.');
        }
 
 
@@ -64,7 +64,7 @@ describe('Make Reservation Use Case',()=>{
 
          })
 
-         it('should save reservation to db',()=>{
+         it('should save reservation to db',async()=>{
         
            
           const reservationDateTime='01/01/2020, 01:01:12'
@@ -79,7 +79,7 @@ describe('Make Reservation Use Case',()=>{
             pin: '12345'
           }
 
-          makeReservation.execute(reservationDateTime,phoneNumber,email)
+          await makeReservation.execute(reservationDateTime,phoneNumber,email)
  
           expect(mockReservationRepository.save).toBeCalledWith(reservationRequest)
 
