@@ -112,11 +112,7 @@ describe('Make Reservation Use Case',()=>{
            const reservationDateTime='01/01/2020, 01:01:12'
           const phoneNumber='123'
           const email='e@email.com'
-          
-          const lockRequest:Partial<LockRequest> ={
-            reservedDateTime: reservationDateTime
-          }
-            
+
           const dateTime:string[]=[]
 
           jest.spyOn(lockMachine,'execute').mockImplementation(async(lockRequest:LockRequest)=>{
@@ -159,15 +155,12 @@ describe('Make Reservation Use Case',()=>{
 
             it('if machine is not locked , proper error should be thrown',async ()=>{
           
-           const reservationDateTime='01/01/2020, 01:01:12'
+          const reservationDateTime='01/01/2020, 01:01:12'
           const phoneNumber='123'
           const email='e@email.com'
-          
 
-          jest.spyOn(lockMachine,'execute').mockImplementation(()=>Promise.resolve(false)
-          )
+          jest.spyOn(lockMachine,'execute').mockImplementation(()=>Promise.reject(false))
        
-
            try{
             await makeReservation.execute(reservationDateTime,phoneNumber,email)    
            }catch(e){
